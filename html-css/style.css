@@ -1,0 +1,36 @@
+body{width:60%;margin:auto;background-color: blanchedalmond;}
+.main_heading{text-align: center;padding:30px;}
+blockquote{
+    justify-self: center;
+    margin-top: 40px;
+    padding-left: 50px;
+}
+header{
+    margin:2rem;
+    padding:2rem;
+    box-shadow: inset 2px 5px 5px 5px #959cbe;
+    position: relative;
+    top:30px;
+}
+figure{position: absolute;top:30px;}
+.side_bar{
+    width: 35%;
+    padding-left: .5rem;
+    margin-left: .5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    font-style: italic;
+    color: #29627e;
+    position:relative;
+    top:30px;
+    margin-bottom: 60px;
+}
+ul>li{color:black;}
+h2{
+    margin:0px;
+    padding:0px;
+    font-size:13px;
+}
+dt{font-weight: bold;}
+.def-term{color:#29627e;padding-bottom:10px;text-decoration: underline}
+   
