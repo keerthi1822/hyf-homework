@@ -1,0 +1,157 @@
+* {
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    max-width: 100%;
+    background-color: rgb(248, 249, 252);
+    border-bottom:2px solid rgb(243, 238, 238);
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+}
+h1 {
+    line-height: 2em;
+}
+h1 + p {
+    color:rgb(163, 159, 159);
+    font-size: 1em;
+    line-height: 1em;
+}
+
+
+nav#top-nav ul {
+    
+    margin:auto;
+    list-style: none;
+    display:flex;
+    line-height: 4em;    
+}
+nav#top-nav ul li{
+    flex:1 1 auto;
+   
+}
+nav#top-nav ul li a {
+    color: rgb(31, 30, 30);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+}
+nav#top-nav ul li a:hover {
+    color: rgb(163, 159, 159);
+}
+.article {
+    min-height:500px;
+    display:flex;
+    justify-content: center;
+    margin:auto;
+    margin-top:50px;    
+}
+
+article h3 {
+font-size: 22px;
+}
+
+.aside h3 {
+    font-size:14;
+    font-weight: bold;
+}
+
+aside p{
+    font-size: 14px;
+    line-height: 1.2em;
+    margin-top: 10px;
+}
+
+.article article p {
+    font-size: 17px;
+}
+
+h3 ~ p {
+    color:rgb(141, 141, 192);
+    padding:10px 0;
+}  
+.gallery-icons{
+    display:flex; 
+    margin:auto;
+    margin-top:50px;
+    min-height:750px;
+    justify-content: center;
+}
+.logos img {
+    padding:45px;
+}
+
+footer {
+    padding:30px;
+    display:flex;
+    background-color: rgb(57, 57, 224);
+    color:white;
+    min-height:400px;
+    justify-content: center;
+  
+}
+
+.findUs {
+    font-weight: bold;
+    flex:1 1 auto;
+}
+.map{
+    max-width:200px;
+}
+footer div h3~p {
+    color:white;
+}
+
+footer div ul li {
+    list-style: none;
+    line-height: 50px;
+    border-bottom: 1px solid rgb(87, 73, 173);
+   
+}
+.aboutPage{
+    flex: 1 1 0;
+}
+.archives{
+    flex:1 1 0;
+}
+.nav-bottom{
+    flex:1 1 0;
+}
+
+.archives li:last-child, .nav-bottom li:last-child {
+    border-bottom: none;
+}
+
+
+/*for smaller screens*/
+
+@media ( max-width:720px){
+    h1 {
+        font-size: 1em;
+        line-height: 2.5em;
+        height: 6em;
+        text-align: center;
+    } 
+    h1 ~ p {
+        text-align: center;
+    } 
+    nav#top-nav ul ,.article, .gallery-icons, footer {
+        flex-direction: column;
+        
+    }
+    nav#top-nav ul li{
+        justify-content: center;
+    }
+     
+}
+@media ( max-width:350px){
+    h1 {
+        font-size: 1em;
+        line-height: 2em;
+        height: 5em;
+    }  
+}
+
