@@ -3,8 +3,17 @@
     padding:0;
     font-family: Arial, Helvetica, sans-serif;
 }
+.container {
+    max-width:100%;
+    margin-left:auto;
+    margin-right:auto;
+
+}
 
 header {
+    padding-top:20px ;
+    padding-left: 17%;
+    padding-right: 15%;
     max-width: 100%;
     background-color: rgb(248, 249, 252);
     border-bottom:2px solid rgb(243, 238, 238);
@@ -21,7 +30,10 @@ h1 + p {
     line-height: 1em;
 }
 
-
+nav#top-nav {
+    padding-left: 17%;
+    padding-right: 15%;
+}
 nav#top-nav ul {
     
     margin:auto;
@@ -42,7 +54,10 @@ nav#top-nav ul li a {
 nav#top-nav ul li a:hover {
     color: rgb(163, 159, 159);
 }
+
 .article {
+    padding-left: 17%;
+    padding-right: 15%;
     min-height:500px;
     display:flex;
     justify-content: center;
@@ -74,6 +89,8 @@ h3 ~ p {
     padding:10px 0;
 }  
 .gallery-icons{
+    padding-left: 17%;
+    padding-right: 15%;
     display:flex; 
     margin:auto;
     margin-top:50px;
@@ -85,6 +102,8 @@ h3 ~ p {
 }
 
 footer {
+    padding-left: 17%;
+    padding-right: 15%;
     padding:30px;
     display:flex;
     background-color: rgb(57, 57, 224);
@@ -96,10 +115,10 @@ footer {
 
 .findUs {
     font-weight: bold;
-    flex:1 1 auto;
+  
 }
 .map{
-    max-width:200px;
+    max-width:230px;
 }
 footer div h3~p {
     color:white;
@@ -111,14 +130,22 @@ footer div ul li {
     border-bottom: 1px solid rgb(87, 73, 173);
    
 }
+footer div {
+  padding:18px;  
+}
+footer div h3{
+    padding-bottom: 10px;
+}
 .aboutPage{
     flex: 1 1 0;
 }
 .archives{
     flex:1 1 0;
+    padding-right:20px;
 }
 .nav-bottom{
     flex:1 1 0;
+    padding-right:20px;
 }
 
 .archives li:last-child, .nav-bottom li:last-child {
