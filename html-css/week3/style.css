@@ -1,0 +1,53 @@
+body{
+    max-width:70%;
+    margin:auto;
+    padding :auto;
+}
+
+main iframe{
+    margin:auto;
+    padding :auto;
+    border:1;
+    border-color:palegreen;
+    margin-top: 10px;
+}
+nav {
+    display:grid ;
+    grid-template-areas: repeat(5, 1fr);
+    grid-auto-rows: auto;
+    grid-template-areas: " logo . home about contact";
+    grid-gap: 1em;
+    align-items: center;
+    text-align: center;
+    color:rgb(50, 21, 102);
+    border: 4px solid palegreen;
+    
+    
+  }
+  a{
+    text-decoration: none;
+    color:rebeccapurple;
+  }
+  
+
+ .logo{
+     grid-area: logo;
+     
+ }
+ .n1{
+     grid-area: home;
+     
+ }
+ .n2{
+    grid-area:about;
+    
+}
+.n3{
+    grid-area: contact;
+    
+}
+ 
+
+
+
+

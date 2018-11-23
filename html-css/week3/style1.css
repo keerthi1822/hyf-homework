@@ -1,0 +1,54 @@
+body {
+    line-height: 24px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+ .hidden{
+    position:absolute; 
+    left:-10000px; 
+    top:auto; 
+    width:1px; 
+    height:1px; 
+    overflow:hidden; 
+}
+
+input[type=checkbox] ~ .hidden{
+position:static; 
+width:auto; 
+height:auto; 
+}
+
+input[type=checkbox]:checked ~ .hidden{
+    position:absolute; 
+    left:-10000px; 
+    top:auto; 
+    width:1px; 
+    height:1px; 
+    overflow:hidden;
+}
+
+
+
+
+
+
+
+
+
+
+progress[value]{
+    height:30px;
+    width:700px;
+   
+}
+fieldset{
+    align-items: center;
+    border:0;
+    
+}
+
+body div p{
+    text-indent: 1.8em;
+    max-width: 60%;
+}
+

@@ -1,0 +1,120 @@
+<html>
+    <head>
+            <meta charset="utf-15">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+            <link rel="stylesheet" type="text/css" href="style1.css">
+        <title>Form1b- Homework3</title>
+    </head>
+    <body>
+        <h1> Sign up to yourcustomtailor.com  </h1>
+        <h2>Step 1/10-Tell us who are you?</h2>
+        <p>progress</p>
+        <progress max="700" value="150"></progress>
+        <p>Nice to meet you. Let's spent a minute to know each other? Please enter the following</p>
+    <form>
+        <fieldset>
+                <label for="fname">First name</label>
+                <input type="text" id="fname" name="form1b" required pattern="[a-zA-Z]{1,20} "
+                minlength="10" maxlength="15" size="16"> 
+    
+                <label for="lname">Last name</label>
+                <input type="text" id="lname" name="form1b" required pattern="[a-zA-Z]{1,20} "
+                minlength="10" maxlength="15" size="16">
+            </fieldset>
+            <fieldset>
+                <label for="country">Country</label>
+                <select id="country" name="form1b">
+                    <option value="">--Please choose a Country--</option>
+                    <option value="denmark">Denmark</option>
+                    <option value="nepal">Nepal</option>
+                    <option value="italy">Italy</option>
+                    <option value="spain">Spain</option>
+                    <option value="germany">Germany</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">United States of America</option>
+                    <option value="australia">Australia</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                
+                <label for="address">Address</label>
+                <input type="text" id="address" name="form1b" required
+                minlength="12" maxlength="20" size="20"> 
+    
+                <label for="post-code">Post code</label>
+                <input type="text" id="post-code" name="form1b"    pattern="[0-9]{10}" required  maxlength="10" size="16">
+                </fieldset>
+
+                <fieldset>
+                <p> Use the same address for billing and shipping? Uncheck below to fill out a saperate shipping address.</p>
+
+            <div class="checkbox">
+                <label for="shippinga">Shipping address</label>
+                <input type="checkbox" checked  id="shippinga" name="shipping" >
+           
+
+            <div class="hidden">
+                <p>Shipping address</p>
+            <fieldset>
+                <label for="fname">First name</label>
+                <input type="text" id="fname" name="form1b" required pattern="[a-zA-Z]{1,20} "
+                minlength="10" maxlength="15" size="16"> 
+
+                <label for="lname">Last name</label>
+                <input type="text" id="lname" name="newaddress"    required pattern="[a-zA-Z]{1,20} "
+                minlength="10" maxlength="15" size="16">
+            </fieldset>
+            
+            <fieldset>
+                <label for="country">Country</label>
+                <select id="country" name="newaddress">
+                <option value="">--Please choose a Country--</option>
+                <option value="denmark">Denmark</option>
+                <option value="nepal">Nepal</option>
+                <option value="italy">Italy</option>
+                <option value="spain">Spain</option>
+                <option value="germany">Germany</option>
+                <option value="uk">United Kingdom</option>
+                <option value="canada">Canada</option>
+                <option value="usa">United States of America</option>
+                <option value="australia">Australia</option>
+                </select>
+            </fieldset>
+
+            <fieldset> 
+            
+                <label for="address">Address</label>
+                <input type="text" id="address" name="newaddress" required
+                minlength="12" maxlength="20" size="20"> 
+
+                <label for="post-code">Post code</label>
+                <input type="text" id="post-code" name="newaddress"  pattern="[0-9]{10}" required  maxlength="10" size="16"> 
+            </fieldset>
+            </div>
+        </div>
+    </fieldset>
+           
+
+            <fieldset>
+                <label for="description">Profile description</label>
+           
+                <textarea id="description" name="newaddress" rows="10" cols="153"  
+                placeholder =" Please provide short description of your self.">
+                </textarea>
+            </fieldset>
+            
+            <fieldset>
+                <a href="C:\Users\lucky1208\Desktop\HYF\homework\html-css\week3\form2.html"><button type="button">
+                        Next step
+                    </button></a>
+                </fieldset>
+        
+            
+            
+
+
+        
+    </form>
+    </body>
+</html>

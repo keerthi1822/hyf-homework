@@ -1,0 +1,75 @@
+<!--<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+            <link rel="stylesheet" type="text/css" href="style1.css">
+        <title>Form1a- Homework3</title>
+    </head>
+    <body>
+        <div>
+            <h1> Sign up to yourcustomtailor.com  </h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in .</p>
+        <h2>Step 1/4-Tell us who are you?</h2>
+        <p>progress</p>
+        <progress max="700" value="50"></progress>
+        <p>Nice to meet you. Let's spent a minute to know each other? Please enter the following</p>
+    </div>
+    <form>
+        <fieldset>
+            <label for="fname">First name </label>
+            <input type="text" id="fname" name="form1a" required
+            minlength="4" maxlength="8" size="16"> 
+
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="form1a" required
+            minlength="4" maxlength="8" size="16">
+            </fieldset>
+
+            <fieldset>
+            <label for="country">Country</label>
+            <select id="country" name="form1a">
+                <option value="">--Please choose a Country--</option>
+                <option value="denmark">Denmark</option>
+                <option value="nepal">Nepal</option>
+                <option value="italy">Italy</option>
+                <option value="spain">Spain</option>
+                <option value="germany">Germany</option>
+                <option value="uk">United Kingdom</option>
+                <option value="canada">Canada</option>
+                <option value="usa">United States of America</option>
+                <option value="australia">Australia</option>
+            </select>
+        </fieldset>
+        <fieldset> 
+            
+            <label for="address">Address</label>
+            <input type="text" id="address" name="form1a" required
+            minlength="4" maxlength="10" size="16"> 
+
+            <label for="post-code">Post code</label>
+            <input type="text" id="post-code" name="form1a"  pattern="[0-9]{4}" required
+            minlength="4" maxlength="10" size="16"> 
+            </fieldset>
+            <fieldset>
+
+            <label for="description">Profile description</label>
+           
+            <textarea id="description" name="form1a" rows="10" cols="83" 
+            placeholder =" Please provide short description of your self.">
+            
+            </textarea>
+            <p> Use the same address for billing and shipping? Uncheck below to fill out a saperate shipping address.</p>
+            
+            <label for="shippinga">Shipping address</label>
+            <input type="checkbox" id="shippinga" name="shipping" 
+            checked>
+        </fieldset>
+            
+        <fieldset>
+             <a href="C:\Users\lucky1208\Desktop\HYF\homework\html-css\week3\form1b.html">
+            <button type="button">Next step</button></a>
+        </fieldset>
+    </form>
+    </body>
+</html>
