@@ -7,6 +7,8 @@ Aata
 water
 oil
 salt
+ajvaan
+spinach
 
 
 
@@ -14,3 +16,5 @@ salt
 process
 :
 Add oil and salt to Aata and mix it well.
+Add Ajvaan and water .
+make a dove.
