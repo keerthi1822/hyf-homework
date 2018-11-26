@@ -13,3 +13,4 @@ salt
 
 process
 :
+Add oil and salt to Aata and mix it well.
