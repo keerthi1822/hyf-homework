@@ -2,3 +2,6 @@ Countries in Europe :
 Denmark
 swedan
 Norway
+germany
+finland 
+spain
