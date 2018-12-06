@@ -1,0 +1,14 @@
+let int1=456;
+let float1=34.566;
+let string1="hello";
+let U;
+let b=0;
+let A=[1,2,3];
+let n="@#";
+console.log("type of " + int1 + " is " + typeof(int1));
+console.log("type of " + float1 + " is " +typeof(float1));
+console.log("type of " + string1 + " is " +typeof(string1));
+console.log("type of " + U + " is " +typeof(U));
+console.log("type of " + b + " is " +typeof(b));
+console.log("type of " + A + " is " +typeof(A));
+console.log("type of " + n + " is " +typeof(n));
