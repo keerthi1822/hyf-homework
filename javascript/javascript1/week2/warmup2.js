@@ -19,7 +19,7 @@ console.log(timeObject);
 console.log(emptyObject);
 
 //testing in different ways
- emptyObject =emptyReturnFunction();
+
 
 //Addind key value name to empty object
 emptyObject.name="keerthi";
