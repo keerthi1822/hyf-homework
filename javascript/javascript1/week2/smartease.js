@@ -2,7 +2,7 @@
 // Save a note
 let notes = [];
 let i;
-let notesObject
+let notesObject;
 let maxnotes = 4;
 let listid;
 //function to add note to note id=1,2,3
@@ -32,16 +32,16 @@ function getNoteFromId(id) {
 for (i = 1; i <= maxnotes; i++) {
     addNote(i, "my" + i + "th note");
 }
-
+//log all notes in notes array
 function showAllNotes() {
     for (i = 0; i < maxnotes; i++) {
-       
+
         console.log("The note with id:" + notes[i].id + ", has the following note text: my" + notes[i]["notedata"] + "th note");
     }
 }
 //log specific note 
 console.log(getNoteFromId(2));
-
+//calling function to log all notes
 showAllNotes();
 
 
