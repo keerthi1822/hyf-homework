@@ -1,4 +1,8 @@
-let books = ["harrypotter", "mahabarat", "ramayan", "vikrambetal", "alladin"];
+let books = ["harrypotter", 
+                "mahabarat", 
+                "ramayan", 
+                "vikrambetal", 
+                "alladin"];
 console.log(books);
 
 
@@ -37,22 +41,54 @@ let booksInfo = [
 
 ]
 
-
-// function generateUlLi() {
-
-//     let uList = document.createElement("ul");
+let booksImgs = [{
+   img : "Harrypotter.png" ,
+    id : books[0]
+},
    
-//      for (let i = 0; i < books.length; i++) {
-//         let list = document.createElement("li");
-//         uList.appendChild(list);
-//         list.setAttribute("id", books[i]);
-//         console.log(list.id);
-//      }
-//      document.body.appendChild(uList);
-     
+{
+    img : "ramayanimg.jpg" ,
+    id:books[2]
+},
+{
+   img : "vikrambetal.jpg" ,
+    id:books[3]
+},
+{
+    img : "Mahabharat.jpg" ,
+      id:books[1]
+  },
+{
+   img : "alladin.jpg",
+    id:books[4]
 
-// }
- 
+}]
+
+//implementing function to add imgs
+function addImages()
+{
+    //selecting parent list
+    let  parentList = document.getElementsByClassName("parentli");
+    console.log( parentList.length);
+    //creating image
+    let imgTag = document.createElement("img");
+
+    //comparing id's of 2 objects(if returns true add image tag)
+    for (let i=0;i< parentList.length;i++){
+        for (let j=0;j< parentList.length;j++){
+            if(parentList[i].id === booksImgs[j].id ){
+                imgTag.setAttribute("src",booksImgs[j].img)
+                parentList[i].appendChild(imgTag);
+               
+            }
+            
+        }
+    }
+}
+
+
+  
+ // implementing function to create list of books and their description
 function generateUlLi() {
 
     let uList = document.createElement("ul");
@@ -65,6 +101,7 @@ function generateUlLi() {
         let list = document.createElement("li");
         uList.appendChild(list);
         list.setAttribute("id", booksInfo[i].id);
+        list.setAttribute("class", 'parentli')
         
 
         //creating H1 element and appending to list
@@ -75,8 +112,10 @@ function generateUlLi() {
         //creating div for description of each book
         let divx = document.createElement("div");
         divx.setAttribute("class","info");
+
         //creating unordered list inside div
         let dList = document.createElement("ul");
+        
         //description(list) about books 
         let dtitle = document.createElement("li");
         dtitle.innerHTML =  booksInfo[i].title;
@@ -103,8 +142,10 @@ function generateUlLi() {
 
 }
 
-//calling function
- generateUlLi(); 
+//calling functions
+ generateUlLi();
+
+ addImages();
 
 
  
