@@ -1,4 +1,33 @@
 body{
-    background-color: aqua;
+   
+    
     font-weight: bold;
+  
+}
+
+ul{
+list-style-type: none;
+padding:auto;
+margin:auto;
+font-size: 30px;
+}
+
+
+.info{
+display:flex;
+}
+
+img{
+    flex:1;
+    padding:auto;
+    margin:auto;
+}
+
+#harrypotter,#ramayan,#alladin{
+    background-color: brown;
+}
+
+#mahabarat,#vikrambetal{
+    background-color: black;
+    color:white;
 }
