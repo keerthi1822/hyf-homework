@@ -40,52 +40,57 @@ document.body.appendChild(selectLabel);
 //creating select tag and its options
 let selectTag = document.createElement("select");
 
-//creating options option1,option2,option3.....
-const option1 = document.createElement('option');
-option1.value = "select an event";
-option1.innerHTML = "select an event";
-selectTag.appendChild(option1);
-
-const option2 = document.createElement('option');
-option2.value = "mouseover";
-option2.innerHTML = "Mouseover";
-selectTag.appendChild(option2);
-
-const option3 = document.createElement('option');
-option3.value = "click";
-option3.innerHTML = "Click";
-selectTag.appendChild(option3);
-
-//can add more options(events) here...
-
-const option4 = document.createElement('option');
-option4.value = "dblclick";
-option4.innerHTML = "doubleclick";
-selectTag.appendChild(option4);
 
 document.body.appendChild(selectTag);
 
 
+//creating options to select tag
+const options = [
+    {value: "select an event" , content: "select event"},
+    {value: "mouseover", content: "mouseover"},
+    {value: "dblclick" , content: "Doubleclick" },
+    {value: "click" , content: "click" },
+    {value: "contextmenu" , content: "contextmenu" }
+];
+for (let option of options){
+    const optionElement = document.createElement("option");
+    optionElement.value = option.value;
+    optionElement.innerHTML = option.content;
+    selectTag.appendChild(optionElement);
+}
 
 
+function generateSpiritualAnimal(){
+    
+    let rValue = Math.floor(Math.random() * 10);
+    console.log(rValue);
+    para.innerHTML = enterText.value + ' - ' + spiritAnimals[rValue];
+}
+
+const registeredEvents=[];
 
 function attachEventToButton(eventName) {
     //Adding event to button
-    button.addEventListener(eventName, () => {
-        console.log(eventName);
-        let rValue = Math.floor(Math.random() * 10);
-        console.log(rValue);
-        para.innerHTML = enterText.value + ' - ' + spiritAnimals[rValue];
-    })
+    console.log(eventName);
+    button.addEventListener(eventName, generateSpiritualAnimal);
+    registeredEvents.push(eventName);
+}
+
+
+function detachEventsFromButton(){
+    button.removeEventListener(registeredEvents.pop(), generateSpiritualAnimal);
+    
 }
 
 
 selectTag.addEventListener("change", () => {
+    
     let index = selectTag.selectedIndex;
     let options = document.querySelectorAll("option");
     console.log(index);
     let event = options[index].value;
     console.log(event);
+    detachEventsFromButton();
     attachEventToButton(event);
 
 })
