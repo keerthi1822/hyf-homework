@@ -1,34 +1,23 @@
-// let arr=[];
-// let three=[];
-// let five=[];
 
-const inputNumber = document.querySelector("#checknumber").innerHTML;
+const inputBG = document.querySelector("#numInpt");
+const button = document.querySelector("#checknumber");
+
 const para = document.querySelector(".result");
-const button = document.querySelector("#checknumber")
-function threeMultiple(number){
-
-if( number % 3==0 )
-para.innerHTML = "multiple of 3"
 
 
+function threeFive(number){
+   console.log(number);
+    if(number % 3 === 0){
+        inputBG.style.backgroundColor = "blue";
+    }
+    else if(number%5 === 0){
+        inputBG.style.backgroundColor = "yellow";
+    }
+    else {
+        para.innerHTML = "not a multiple of 3 or 5";
+    }
 }
 
-function fiveMultiple(number){
 
-    if( number % 5==0 )
-    para.innerHTML = "multiple of 5"
-   
-    }
+button.addEventListener("click", ()=>{threeFive(inputBG.value)})
 
-button.addEventListener("click",
-(inputNumber,threeMultiple(inputNumber),fiveMultiple(inputNumber)) => {
-   
-        threeMultiple(inputNumber);
-        fiveMultiple(inputNumber);
-        if(threeMultiple && fiveMultiple == true)
-        para.innerHTML = "multiple of 3 and 5";
-
-    
-});
-
-//multiples3And5(inputNumber,threeMultiple,fiveMultiple);
