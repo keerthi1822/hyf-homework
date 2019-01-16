@@ -20,14 +20,15 @@ function fiveMultiple(multiple){
 
 
 
-function multiples3And5(stValue,endValue,threeMultiple,fiveMultiple){
-   
+function multiples3And5(stValue,endValue,callbacks){
+ 
     for(let i=stValue ; i<=endValue ; i++){
         arr.push(i);
         console.log(arr);
-        threeMultiple(i);
-        fiveMultiple(i);
+        for( let callback of callbacks){
+            callback(i);
+        }
     }
 }
 
-multiples3And5(1,10,threeMultiple,fiveMultiple);
+multiples3And5(1,10,[threeMultiple,fiveMultiple]);
