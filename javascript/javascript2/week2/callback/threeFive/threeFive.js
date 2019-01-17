@@ -2,6 +2,7 @@ let arr=[];
 let three=[];
 let five=[];
 
+//implementation of callback function to check the number is multiple of three 
 function threeMultiple(multiple){
 
 if( multiple % 3==0 )
@@ -10,6 +11,7 @@ console.log(three);
 
 }
 
+//implementation of callback function to check the number is multiple of five
 function fiveMultiple(multiple){
 
     if( multiple % 5==0 )
@@ -19,7 +21,7 @@ function fiveMultiple(multiple){
     }
 
 
-
+//implementation of normal function that calls the callback functions(threeMultiple , fiveMultiple)
 function multiples3And5(stValue,endValue,callbacks){
  
     for(let i=stValue ; i<=endValue ; i++){
@@ -31,4 +33,5 @@ function multiples3And5(stValue,endValue,callbacks){
     }
 }
 
+//function calling
 multiples3And5(1,10,[threeMultiple,fiveMultiple]);
