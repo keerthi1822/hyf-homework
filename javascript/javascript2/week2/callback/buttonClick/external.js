@@ -8,12 +8,19 @@ const para = document.querySelector(".result");
 function threeFive(number) {
     console.log(number);
     para.innerHTML ="";
+    
     if (number % 3 === 0) {
-        inputBG.style.backgroundColor = "blue";
-    }
-    else if (number % 5 === 0) {
+        if (number % 5 === 0) {
+            inputBG.style.backgroundColor = "purple";
+            para.innerHTML = " multiple of both 3 or 5";
+        }
+        else{
+            inputBG.style.backgroundColor = "blue";
+        }
+    elseif(number % 5 === 0)
         inputBG.style.backgroundColor = "yellow";
     }
+    
     else {
         para.innerHTML = "not a multiple of 3 or 5";
     }
