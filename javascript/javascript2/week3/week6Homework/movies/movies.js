@@ -14,5 +14,5 @@ let num_filterMovies = moviesList.filter((list)=>{
     return (list.year >= 1980 && list.year <= 1989)
        
 }).length;
-console.log(num_filterMovies);
+console.log("length of filtered array: "+num_filterMovies);
 
