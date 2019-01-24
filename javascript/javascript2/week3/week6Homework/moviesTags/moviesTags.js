@@ -16,3 +16,4 @@ moviesList = moviesList.filter((movie)=>{
 console.log(" Arrays is " + moviesList);
 
 
+//no currect output

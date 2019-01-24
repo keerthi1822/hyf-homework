@@ -28,18 +28,33 @@ return movie.split(" ");
 //log splited Arrays
 console.log(splitStrings);
 
+// let mergeArray = splitStrings.reduce((merged,splitArr)=>{
+//     return  merged.concat(splitArr);
+// },[]);
+// console.log(mergeArray);
+
+let countMovies = movieTitleArray.reduce((finalobj,movie)=>{
+   
+   if (movie.includes("the")) 
+   finalobj["the"]=1;
+   
+   return finalobj;   
+},{});
+console.log(countMovies);
+
+
 //Implementation of function to compare 2 arrays
-let findKeyWords= function (splitStrings,searchStrings)
-{
-    let foundKeywords = [];
-    splitStrings.forEach((str)=>searchStrings.forEach((str1)     =>{
-        if(str == str1)
-        foundKeywords.push(str);
-        console.log(foundkeywords);
-        })
-    )
-    return foundKeywords;
-}
+    // let findKeyWords= function (splitStrings,searchStrings)
+    // {
+    //     let foundKeywords = [];
+    //     splitStrings.forEach((str)=>searchStrings.forEach((str1)     =>{
+    //         if(str == str1)
+    //         foundKeywords.push(str);
+    //         console.log(foundkeywords);
+    //         })
+    //     )
+    //     return foundKeywords;
+    // }
 
 
-console.log(findKeyWords);
+// console.log(findKeyWords);

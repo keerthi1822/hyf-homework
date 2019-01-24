@@ -11,14 +11,18 @@ let count = 0;
 
 let tags = moviesList.map((movie)=>{
     return movie.tag
-}).reduce((sum, tagval,index,array)=>{
-    sum+=tagval;
-    if(index == array.length-1)
-        return sum/array.length
-    else
-        return sum;
+})
 
-},0)
+const moviesStatus = tags.reduce((moviesRange, tagval)=>{
+    if ( tagval >= 7 )
+        return moviesRange[good]++ ;
+    elseif (tagval < 7 && tagval > 4)
+        return moviesRange[avg]++ ;
+    elseif (tagval <= 4)
+    return moviesRange[bad]++ ;
+    
+},{good:0,avg:0,bad:0})
 
 
-console.log("average: " +tags);
+console.log(moviesStatus);
+//no output
