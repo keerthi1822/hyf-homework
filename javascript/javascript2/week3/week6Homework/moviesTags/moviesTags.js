@@ -1,3 +1,4 @@
+//movies 
 let moviesList=[
     {mName:"The Wizard" ,year:1989 ,tag:4 },
     {mName:"Mac and Me" ,year:1988 ,tag:7  },
@@ -7,13 +8,12 @@ let moviesList=[
     {mName:"stand by me" ,year:1986 ,tag:3}
 ];
 
-moviesList = moviesList.filter((movie)=>{
+//filtering movies that has 'rating' is morethan 6 and mapping movies array 'using chaining'
+const tags = moviesList.filter((movie)=>{
     return movie.tag > 6;
 }).map((movie)=>{
     return {Tag: movie.tag,
             movie : movie.mName};
 })
-console.log(" Arrays is " + moviesList);
-
-
-//no currect output
+//display new Array of objects with keys 'title' and 'tag'
+console.log(tags);

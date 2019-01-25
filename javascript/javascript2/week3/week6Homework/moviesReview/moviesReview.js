@@ -7,6 +7,15 @@ const moviesList=[
     {title:"The never ending story" ,year:1984 ,tag:5 },
     {title:"stand by me" ,year:1986 ,tag:3}
 ];
+
+moviesList.map((movieDetail) => {
+    console.log(typeof movieDetail);
+    console.log(movieDetail.title);
+    
+    
+    
+})
+
 let count = 0;
 
 let tags = moviesList.map((movie)=>{
@@ -14,12 +23,14 @@ let tags = moviesList.map((movie)=>{
 })
 
 const moviesStatus = tags.reduce((moviesRange, tagval)=>{
+    
+    
     if ( tagval >= 7 )
-        return moviesRange[good]++ ;
-    elseif (tagval < 7 && tagval > 4)
-        return moviesRange[avg]++ ;
-    elseif (tagval <= 4)
-    return moviesRange[bad]++ ;
+        return moviesRange['good']++ ;
+    else if (tagval < 7 && tagval > 4)
+        return moviesRange['avg']++ ;
+    else if (tagval <= 4)
+    return moviesRange['bad']++ ;
     
 },{good:0,avg:0,bad:0})
 

@@ -1,60 +1,41 @@
 
 //List of movie details
-const moviesList=[
-    {title:"The Wizard" ,year:1989 ,tag:4 },
-    {title:"Mac and Me" ,year:1988 ,tag:7  },
-    {title:"Free willy" ,year:1993 ,tag:6 },
-    {title:"Herry and the Hender sons" ,year:1987 ,tag:5 },
-    {title:"The never ending story" ,year:1984 ,tag:5 },
-    {title:"stand by me" ,year:1986 ,tag:3}
+const moviesList = [
+    { title: "The Wizard", year: 1989, tag: 4 },
+    { title: "Mac and Me", year: 1988, tag: 7 },
+    { title: "Free willy", year: 1993, tag: 6 },
+    { title: "Herry and the Hender sons", year: 1987, tag: 5 },
+    { title: "The never ending story", year: 1984, tag: 5 },
+    { title: "stand by me", year: 1986, tag: 3 }
 ];
 
-//search strings
-const searchStrings = ["the","me","and"];
 
-//map movie title in an Array
-let movieTitleArray = moviesList.map((movie)=>{
-   return movie.title;
-});
+const moviewContainingKeyword = moviesList.filter((movie) => {
 
-//print Array of titles(movieTitleArray)
-console.log(movieTitleArray);
+    return doesMovieTitleContainKeyword(movie.title);
+})
 
-//Split each movie title into strings
-let splitStrings =movieTitleArray.map((movie)=>{
-return movie.split(" ");
-});
+console.log(moviewContainingKeyword.length);
 
-//log splited Arrays
-console.log(splitStrings);
+function doesMovieTitleContainKeyword(title) {
+    console.log(title);
+    
+    //search strings
+    const searchStrings = ["the", "me", "and"];
+    let movieContainsKeyword = false;
+    //console.log(title);
+    
+    searchStrings.forEach((searchString) => {
+        if (title.toLowerCase().includes(searchString)) {
+            //console.log('contians keyword!!!'); 
+            movieContainsKeyword = true;
+        }
 
-// let mergeArray = splitStrings.reduce((merged,splitArr)=>{
-//     return  merged.concat(splitArr);
-// },[]);
-// console.log(mergeArray);
+    })
 
-let countMovies = movieTitleArray.reduce((finalobj,movie)=>{
-   
-   if (movie.includes("the")) 
-   finalobj["the"]=1;
-   
-   return finalobj;   
-},{});
-console.log(countMovies);
+    return movieContainsKeyword;
 
-
-//Implementation of function to compare 2 arrays
-    // let findKeyWords= function (splitStrings,searchStrings)
-    // {
-    //     let foundKeywords = [];
-    //     splitStrings.forEach((str)=>searchStrings.forEach((str1)     =>{
-    //         if(str == str1)
-    //         foundKeywords.push(str);
-    //         console.log(foundkeywords);
-    //         })
-    //     )
-    //     return foundKeywords;
-    // }
-
-
-// console.log(findKeyWords);
+}
+//  ["the","me","and"]
+//console.log(doesMovieTitleContainKeyword('hey hey hey')); // return false
+//console.log(doesMovieTitleContainKeyword('hey hey me')); // return true

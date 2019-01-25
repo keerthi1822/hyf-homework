@@ -7,8 +7,8 @@ const moviesList=[
     {title:"The never ending story" ,year:1984 ,tag:5 },
     {title:"stand by me" ,year:1986 ,tag:3}
 ];
-let count = 0;
 
+//mapping tag key from an array and finding average using 'reduce'
 let tags = moviesList.map((movie)=>{
     return movie.tag
 }).reduce((sum, tagval,index,array)=>{
@@ -20,5 +20,4 @@ let tags = moviesList.map((movie)=>{
 
 },0)
 
-
-console.log("average: " +tags);
+console.log("average is: " +tags);
