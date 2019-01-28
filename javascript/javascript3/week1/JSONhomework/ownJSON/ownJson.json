@@ -1,0 +1,48 @@
+
+
+{
+    "Siblings":
+    {
+        "child1":
+        {
+            "Age": 111,
+            "Activities":
+            {
+                "Swimming":["Tuesday"],
+                "Skating":["wednesday","Saturday"],
+                "Badminton":["Tuesday","Thursday"],
+                "Hockey":["Monday"]
+            },
+            "School": "XYZ School",
+            "Section": "Z",
+            "LanguagesKnown":["Telugu","English","Danish","French"],
+            "Likes":[{
+                "IndianFood":["vada","Dosa","pakoda"],
+                "playingWith":["Ipad","videogames"],
+                "Books":["facts","solarsystem","Science","Nonfiction"],
+                "MUsic":"all types"
+                }],
+            "PlacesVisited":["Germany","India","France","Italy"],
+            "ToGoPlaces":["AllOverWorld","ToSpace"],
+            "Ambitions":["Pilot","footballPlayer","Scientist","Astronat"]
+
+        },
+        "child2":
+        {
+            "Age": 111,
+            "Activities":
+            {
+                "Swimming":["Thursday"],
+                "Skating":["Saturday"],
+                "Hockey" :["Monday"]
+            },
+            "School": "XYZ School",
+            "Section": "L",
+            "LanguagesKnown":["Telugu","English"],
+            "Likes":["Chocolates","BoardGames","SurpriseGifts","Numbers","dance","music"],
+            "PlacesVisited":["Germany","India","France","Italy"],
+            "ToGoPlaces":["DisneyLand"],
+            "Ambitions":["BecomePrince","CountNumbersUntil1000"]
+        }
+    }
+}
