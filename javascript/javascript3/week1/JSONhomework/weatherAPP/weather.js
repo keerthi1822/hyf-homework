@@ -30,51 +30,70 @@ button.addEventListener("click", () => {
     }
 });
 
-//---------------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
-//Find weather using Location
+//Find user Location
 
-let button1 = document.querySelector('#buttonGeo');
-let tempUsingLocation = document.querySelector('#getTempUsingGeo');
-tempUsingLocation.innerHTML = "";
-let pLoc =  document.querySelector("#currentLOC");
-pLoc.innerHTML="";
+const button2 = document.querySelector("#geoLoc");
+const pdata = document.querySelector("#yourLOC");
 
-//Adding event to Button and fetching JSON 
-
-button1.addEventListener("click", () => {
-
-   //coords to current location
-    let coords = {
-        "lon": 12.57,
-        "lat": 55.69
-    }
-    let url_part1 = " https://api.openweathermap.org/data/2.5/weather?";
-    let geoLocation = 'lat='+(coords.lat)+'&lon='+(coords.lon);
-    
-
-    //concating URL
-    let url = url_part1 + geoLocation+ myApi;
-    //console.log(url)
-
-    //fetching JSON 
-    if(geoLocation !==""){
-    fetch(url)
-        .then(response => response.json())
-        .then((weatherUsingGeo) => {
-            
-            //console.log(weatherUsingGeo.name);
-            //console.log(weatherUsingGeo.main.temp);
-            //Display on browser
-            pLoc.innerHTML = weatherUsingGeo.name;
-            tempUsingLocation.innerHTML = weatherUsingGeo.weather[0].description;
-
-        });
+button2.addEventListener("click", ()=>{
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(myPosition);
     }
     else{
-        pLoc.innerHTML = "pls provide geoLocation" ;
+        pdata.innerHTML = "browser doesn't support"
     }
 });
+
+function myPosition(position){
+    pdata.innerHTML = "your current Location is :<br>"+ position.coords.latitude +"<br>" + position.coords.longitude +"<br>"+ position.coords.accuracy;
+}
+
+
+//----------------------------------------------------------------------
+//let button1 = document.querySelector('#buttonGeo');
+// let tempUsingLocation = document.querySelector('#getTempUsingGeo');
+// tempUsingLocation.innerHTML = "";
+// let pLoc =  document.querySelector("#currentLOC");
+// pLoc.innerHTML="";
+
+// //Adding event to Button and fetching JSON 
+
+// button1.addEventListener("click", () => {
+
+//    //coords to current location
+//     let loc = {
+//         "lon": 12.57,
+//         "lat": 55.69
+//     }
+//     let url_part1 = " https://api.openweathermap.org/data/2.5/weather?";
+//     let geoLocation = 'lat='+(loc.lat)+'&lon='+(loc.lon);
+
+
+//     //concating URL
+//     let url = url_part1 + geoLocation+ myApi;
+//     //console.log(url)
+
+//     //fetching JSON 
+//     if(geoLocation !==""){
+//     fetch(url)
+//         .then(response => response.json())
+//         .then((weatherUsingGeo) => {
+            
+//             //console.log(weatherUsingGeo.name);
+//             //console.log(weatherUsingGeo.main.temp);
+//             //Display on browser
+//             pLoc.innerHTML = weatherUsingGeo.name;
+//             tempUsingLocation.innerHTML = weatherUsingGeo.weather[0].description;
+
+//         });
+//     }
+//     else{
+//         pLoc.innerHTML = "pls provide geoLocation" ;
+//     }
+// });
+
 
 
 
