@@ -1,22 +1,24 @@
 <html>
-    <head>
-
+    <head> 
+        <title>Weather API</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-    <div>
-        <p>Weather Using city </p>
+    <div class="block">
+        <h3 class="heading">Weather Using city </h3>
         <input type="text" id="place"  placeholder="enter location here"><br><br>
         <button id ="button">check weather</button>
         <p id="getTemp"></p><br><br>
     </div>
-    <div>
-        <p> weather Using current location</p>
+    <div class="block">
+        <h3 class="heading"> weather Using current location</h3>
         <button id ="buttongeo">check weather</button><br>
+        <div class="givenLoc">
         current location is:
-        <p id="currentLOC"></p><br>
-        <p id="getTempUsingGeo"></p><br><br>
+        <p id="currentLOC"></p>
+        <p id="getTempUsingGeo"></p>
+        </div>
     </div>
-
         <script src="weather.js"></script>
     </body>
 </html> 

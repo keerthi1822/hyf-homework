@@ -1,10 +1,9 @@
-//Finding weather using City
 let button = document.querySelector("#button");
-let location = document.querySelector("#place");
+let myLocation = document.querySelector("#place");
 let temperature = document.querySelector("#getTemp");
 temperature.innerHTML="";
 
-const myApi = "&appid=16c4afbda3818a3fcda999336b1f57e6";
+const myApi = "&appid=16c4afbda3818a3fcda999336b1f57e6&units=metric";
 
 //Adding Event to button 
 button.addEventListener("click", () => {
@@ -13,19 +12,25 @@ button.addEventListener("click", () => {
     //concating URL
     let url = url_part1 + city + myApi;
 
-    console.log(url)
-    console.log(city);
-    
+    //console.log(url)
+    //console.log(city);
+    if(city!==""){
     fetch(url)
         .then(response => response.json())
-        .then((weather) => {
+        .then((weather1) => {
 
-            console.log(weather.name);
-            console.log(weather.main.temp);
-            temperature.innerHTML = weather.main.temp;
+            //console.log(weather1.name);
+            //console.log(weather1.main.temp);
+            temperature.innerHTML = weather1.weather[0].description;
 
         });
+    }
+    else{
+        temperature.innerHTML = "Pls enter location"
+    }
 });
+
+//---------------------------------------------------------------------------
 
 //Find weather using Location
 
@@ -50,22 +55,25 @@ button1.addEventListener("click", () => {
 
     //concating URL
     let url = url_part1 + geoLocation+ myApi;
-
-    console.log(url)
-    console.log(city);
+    //console.log(url)
 
     //fetching JSON 
+    if(geoLocation !==""){
     fetch(url)
         .then(response => response.json())
         .then((weatherUsingGeo) => {
             
-            console.log(weatherUsingGeo.name);
-            console.log(weatherUsingGeo.main.temp);
+            //console.log(weatherUsingGeo.name);
+            //console.log(weatherUsingGeo.main.temp);
             //Display on browser
             pLoc.innerHTML = weatherUsingGeo.name;
-            tempUsingLocation.innerHTML = weatherUsingGeo.main.temp;
+            tempUsingLocation.innerHTML = weatherUsingGeo.weather[0].description;
 
         });
+    }
+    else{
+        pLoc.innerHTML = "pls provide geoLocation" ;
+    }
 });
 
 

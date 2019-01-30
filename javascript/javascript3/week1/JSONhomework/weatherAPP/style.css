@@ -1,0 +1,21 @@
+body{
+    margin:auto;
+    padding:auto;
+    border:  1px solid blue;
+    border-radius: 10px; 
+    text-align: center;
+    display:flex;
+ 
+}
+.block{
+    box-sizing: border-box;
+    width:50%;
+    height: 40%;
+    border:  5px solid gray;
+    border-radius: 10px; 
+   
+
+}
+.heading{
+    background-color: blueviolet;
+}
