@@ -54,6 +54,9 @@ section.products ul li {
     padding: 12px 0 12px 12px;
     margin-bottom: 12px;
 }
+section.products  li .ships-to {
+    flex-wrap: wrap;
+}
 section.products ul li:nth-child(odd) {
     background-color: #f0f0f0;
 }
