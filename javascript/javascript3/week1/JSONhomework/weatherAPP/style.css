@@ -1,21 +1,27 @@
 body{
+    background-color: cadetblue;
     margin:auto;
     padding:auto;
     border:  1px solid blue;
     border-radius: 10px; 
     text-align: center;
-    display:flex;
+    
  
 }
 .block{
+    background-color: rgb(33, 41, 41);
     box-sizing: border-box;
     width:50%;
     height: 40%;
     border:  5px solid gray;
     border-radius: 10px; 
-   
-
+    margin:auto;
+    margin-top:3%;    
 }
+
 .heading{
-    background-color: blueviolet;
+    background-color: rgb(226, 125, 43);
+}
+#getTemp,#yourLOC{
+    background-color: darkcyan;
 }

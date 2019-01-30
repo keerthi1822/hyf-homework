@@ -47,7 +47,7 @@ button2.addEventListener("click", ()=>{
 });
 
 function myPosition(position){
-    pdata.innerHTML = "your current Location is :<br>"+ position.coords.latitude +"<br>" + position.coords.longitude +"<br>"+ position.coords.accuracy;
+    pdata.innerHTML = "your current Location is :<br> lat:"+ position.coords.latitude +"<br> long:" + position.coords.longitude ;
 }
 
 
