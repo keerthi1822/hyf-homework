@@ -13,6 +13,7 @@ let products = getAvailableProducts();
 function displayList(listArray) {
   sectionProducts.innerHTML= "";
   //console.log(products);
+
  listArray.forEach((product) => {
     let list = document.createElement("li");
     
@@ -33,7 +34,7 @@ function displayList(listArray) {
     list.appendChild(rating);
 
     let shipsTo = document.createElement("div");
-    shipsTo.setAttribute("class", "shipsTo");
+    shipsTo.setAttribute("class", "ships-to");
     shipsTo.innerHTML = product.shipsTo;
     list.appendChild(shipsTo);
 
@@ -60,33 +61,29 @@ sendPricesToServer(prices, serverResponse => {
 
 //---------------------------------------------------------------------
 
-//filter using select
-let selectTag = document.querySelector(".country select");
-selectTag.addEventListener("change", () => {
- 
-  let sCity = selectTag.value;
-  //console.log(sCity);
+//filter using country
+const countryElement = document.querySelector ('.country select');
 
-  let selectedWithCountry =  products.filter (product => 
-    product.shipsTo.includes (sCity));;
-    console.log(selectedWithCountry);
-    displayList(selectedWithCountry);
-  });
- 
+
+countryElement.addEventListener ('change', () => {
+    let selectedCountry = countryElement.value;
+    let selectedListByCountries = products.filter (product => 
+        product.shipsTo.includes (selectedCountry));
+    
+    displayList (selectedListByCountries);
+});
  
 
 //-------------------------------------------------------------------
 //filter on search
 const searchTag = document.querySelector("#searchText");
-const searchWord = searchTag.value;
-console.log(searchWord);
-
   searchTag.addEventListener("input",()=>{
+    let searchWord = searchTag.value;
 
-  const listFromSearch = products.filter((product)=>{
-    product.name.toLowerCase().includes(searchWord.toLowerCase());
+  let listFromSearch = products.filter(product=>
+    product.name.toLowerCase().includes(searchWord.toLowerCase()));
     displayList(listFromSearch);
-  });
+ 
 });
 
 //-----------------------------------------------------------------------
@@ -94,27 +91,6 @@ console.log(searchWord);
 let selectTagSort = document.querySelector(".sort select");
 
 
-prices.sort((a,b)=>a-b);
-console.log(prices);
-// for(i=0;i<prices.length;i++){
-// let sortedProducts=product.includes(prices[i]);
-// console.log(products.map((product)=>displayList(sortedProducts)));
-// }
-
-selectTagSort.addEventListener("change",()=>{
-  const selectedRange = selectTagSort.value;
-  for(i=0;i<prices.length;i++)
-  {
-    let sortedProducts = products.map((product)=>product.price === prices[i]);
-     }
-  if(selectedRange === "cheap"){
-    
-   displayList(sortedProducts);
-  }
-  // elseif()
-  //   console.log("in else")
-  // }
-});
 
 
 
