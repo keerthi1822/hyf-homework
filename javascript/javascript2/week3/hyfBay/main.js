@@ -6,13 +6,14 @@ let sectionProducts = document.querySelector(".products > ul");
 
 //calling function getAvailableProducts
 let products = getAvailableProducts();
-console.log(products);
+//console.log(products);
 
 
 //function to display products on screen
 function displayList(listArray) {
   sectionProducts.innerHTML= "";
- listArray.forEach(product => {
+  //console.log(products);
+ listArray.forEach((product) => {
     let list = document.createElement("li");
     
 
@@ -64,8 +65,8 @@ let selectTag = document.querySelector(".country select");
 selectTag.addEventListener("change", () => {
  
   let sCity = selectTag.value;
-  console.log(sCity);
-  //console.log(productList);
+  //console.log(sCity);
+
   let selectedWithCountry =  products.filter (product => 
     product.shipsTo.includes (sCity));;
     console.log(selectedWithCountry);
@@ -91,19 +92,28 @@ console.log(searchWord);
 //-----------------------------------------------------------------------
 //sort by  price
 let selectTagSort = document.querySelector(".sort select");
-const selectedRange = selectTagSort.value;
-let productPrices = products.filter((product)=>products.price)
-let sortedPrices = productPrices.sort((a,b)=>a-b);
-console.log(productPrices);
-console.log(sortedPrices);
+
+
+prices.sort((a,b)=>a-b);
+console.log(prices);
+// for(i=0;i<prices.length;i++){
+// let sortedProducts=product.includes(prices[i]);
+// console.log(products.map((product)=>displayList(sortedProducts)));
+// }
 
 selectTagSort.addEventListener("change",()=>{
-  if(selectedRange ==="cheap"){
-    displayList()
+  const selectedRange = selectTagSort.value;
+  for(i=0;i<prices.length;i++)
+  {
+    let sortedProducts = products.map((product)=>product.price === prices[i]);
+     }
+  if(selectedRange === "cheap"){
+    
+   displayList(sortedProducts);
   }
-  elseif()
-
-  }
+  // elseif()
+  //   console.log("in else")
+  // }
 });
 
 
