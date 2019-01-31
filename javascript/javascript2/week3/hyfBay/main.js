@@ -1,18 +1,20 @@
 console.log("Script loaded");
 
 //selecting element from index.html
-let sectionProducts = document.querySelector(".products ul");
+let sectionProducts = document.querySelector(".products > ul");
 //console.log(sectionProducts);
 
 //calling function getAvailableProducts
-let productList = getAvailableProducts();
-console.log(productList);
-displayList(productList);
+let products = getAvailableProducts();
+console.log(products);
+
 
 //function to display products on screen
-function displayList(list) {
-  let productDetails = list.map(product => {
+function displayList(listArray) {
+  sectionProducts.innerHTML= "";
+ listArray.forEach(product => {
     let list = document.createElement("li");
+    
 
     let name = document.createElement("div");
     name.setAttribute("class", "name");
@@ -43,11 +45,12 @@ function displayList(list) {
   });
 }
 
+displayList(products);
 //---------------------------------------------------------------
 
 //price analysis
 
-let prices = productList.map(product => {
+let prices = products.map(product => {
   return product.price;
 });
 sendPricesToServer(prices, serverResponse => {
@@ -62,11 +65,47 @@ selectTag.addEventListener("change", () => {
  
   let sCity = selectTag.value;
   console.log(sCity);
-  console.log(productList);
-  let selectedWithCountry = productList.filter(product =>product.shipsTo.includes (sCity));
-  console.log(selectedWithCountry);
+  //console.log(productList);
+  let selectedWithCountry =  products.filter (product => 
+    product.shipsTo.includes (sCity));;
+    console.log(selectedWithCountry);
     displayList(selectedWithCountry);
   });
  
  
+
+//-------------------------------------------------------------------
+//filter on search
+const searchTag = document.querySelector("#searchText");
+const searchWord = searchTag.value;
+console.log(searchWord);
+
+  searchTag.addEventListener("input",()=>{
+
+  const listFromSearch = products.filter((product)=>{
+    product.name.toLowerCase().includes(searchWord.toLowerCase());
+    displayList(listFromSearch);
+  });
+});
+
+//-----------------------------------------------------------------------
+//sort by  price
+let selectTagSort = document.querySelector(".sort select");
+const selectedRange = selectTagSort.value;
+let productPrices = products.filter((product)=>products.price)
+let sortedPrices = productPrices.sort((a,b)=>a-b);
+console.log(productPrices);
+console.log(sortedPrices);
+
+selectTagSort.addEventListener("change",()=>{
+  if(selectedRange ==="cheap"){
+    displayList()
+  }
+  elseif()
+
+  }
+});
+
+
+
 
