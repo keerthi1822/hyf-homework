@@ -1,7 +1,7 @@
 let button = document.querySelector("#button");
 let myLocation = document.querySelector("#place");
-let temperature = document.querySelector("#getTemp");
-temperature.innerHTML="";
+let weather = document.querySelector("#getTemp");
+weather.innerHTML="";
 
 const myApi = "&appid=16c4afbda3818a3fcda999336b1f57e6&units=metric";
 
@@ -21,12 +21,12 @@ button.addEventListener("click", () => {
 
             //console.log(weather1.name);
             //console.log(weather1.main.temp);
-            temperature.innerHTML = weather1.weather[0].description;
+            weather.innerHTML = weather1.weather[0].description;
 
         });
     }
     else{
-        temperature.innerHTML = "Pls enter location"
+        weather.innerHTML = "Pls enter location"
     }
 });
 
@@ -49,6 +49,15 @@ button2.addEventListener("click", ()=>{
 function myPosition(position){
     pdata.innerHTML = "your current Location is :<br> lat:"+ position.coords.latitude +"<br> long:" + position.coords.longitude ;
 }
+    //storing value in local storage
+    localStorage.setItem("latitude",JSON.stringify(position.coords.latitude));
+    localStorage.setItem("longitude",JSON.stringify(position.coords.longitude));
+    // //getting value from local storage
+    // let lat = localStorage.getItem("latitude");
+    // let long = localstorage.getItem("longitude");
+    // console.log(lat);
+    // console.log(long);
+
 
 
 //----------------------------------------------------------------------
