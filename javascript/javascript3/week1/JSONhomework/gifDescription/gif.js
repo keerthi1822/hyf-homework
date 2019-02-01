@@ -12,7 +12,7 @@ searchButton.addEventListener("click",()=>{
     let searchWord = inputText.value;
     if(searchWord !== ""){
         console.log(searchWord)
-    fetch("http://api.giphy.com/v1/gifs/search?q="+searchWord+"&api_key=HCRI89ixujLx2ZrfrZEmkrItQzVetl68&limit=5")
+    fetch("https://api.giphy.com/v1/gifs/search?q="+searchWord+"&api_key=HCRI89ixujLx2ZrfrZEmkrItQzVetl68&limit=5")
     .then(response => response.json())
     .then((gif) => {
 
