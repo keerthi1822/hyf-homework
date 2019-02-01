@@ -16,7 +16,7 @@ searchButton.addEventListener("click",()=>{
     .then(response => response.json())
     .then((gif) => {
 
-        img.src = gif.data[0].images.original_still.url;
+        img.src = gif.data[1].images.preview_webp.url;
         
         });
     }
