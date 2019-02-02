@@ -45,13 +45,26 @@ button2.addEventListener("click", ()=>{
         pdata.innerHTML = "browser doesn't support"
     }
 });
+function getplace(lat,long){
+    let url_part1 = " https://api.openweathermap.org/data/2.5/weather?";
+    url = url_part1+'lat=' + lat + '&lon=' + long + '&appid='+myApi;
+    console.log(url);
+    fetch (url)
+    .then (response => response.json())
+    .then ((name) => {
+        pdata.innerHTML =  name[name];
+    });
+}
 
 function myPosition(position){
-    pdata.innerHTML = "your current Location is :<br> lat:"+ position.coords.latitude +"<br> long:" + position.coords.longitude ;
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude ;
+    getplace(lat,long);
 }
+
     //storing value in local storage
-    localStorage.setItem("latitude",JSON.stringify(position.coords.latitude));
-    localStorage.setItem("longitude",JSON.stringify(position.coords.longitude));
+    //localStorage.setItem("latitude",JSON.stringify(position.coords.latitude));
+    //localStorage.setItem("longitude",JSON.stringify(position.coords.longitude));
     // //getting value from local storage
     // let lat = localStorage.getItem("latitude");
     // let long = localstorage.getItem("longitude");
