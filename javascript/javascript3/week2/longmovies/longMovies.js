@@ -1,23 +1,35 @@
 
 
 // Fetch movies from this api: https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json
-fetch("https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json")
+ fetch("https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json")
 .then(response=>response.json())
 .then((movies)=>{
     console.log("all movies:");
     console.log(movies);
-getlongmovies(movies);
-getbadmovies(movies);
+    getlongmovies(movies)
+    getbadmovies(movies);  
+
+})
+
+console.log(moviesPromise);
+
+// //longMovies
+// moviesPromise.then((movies)=>{
+//     const longMovies = movies.filter((movie)=>{
+//         return movie.running_times > 7000;
+//     }).map((movie)=>{
+//         return movie.title;
+//     });
+//     console.log("long movies: ");
+//     console.log(longMovies);
+// });
 
 
-});
 
-//Create an array called long movies that contain an array of long movies. A long movie has a running time of larger than 7000
-//Create an array called longMovieTitles. That contain only the titles of the long movies.
+// Create an array called long movies that contain an array of long movies. A long movie has a running time of larger than 7000
+// Create an array called longMovieTitles. That contain only the titles of the long movies.
 function getlongmovies(movies){
-    const longMovies = movies.filter((movie)=>{
-        return movie.running_times > 7000;
-    }).map((movie)=>{
+    const longMovies = movies.filter( movie=> movie.running_times > 7000 ).map((movie)=>{
         return movie.title;
     });
     console.log("long movies: ");
@@ -25,6 +37,7 @@ function getlongmovies(movies){
 }
 
 //Log out an array of bad movies
+
 function getbadmovies(movies){
     const badMovies = movies.filter((movie)=>{
         return movie.rating < 4
@@ -33,6 +46,7 @@ function getbadmovies(movies){
     console.log(badMovies);
     getbadmoviessince2000(badMovies);
 }
+
 
 //Log out an array of bad movies since year 2000
 function getbadmoviessince2000(badmovies){
