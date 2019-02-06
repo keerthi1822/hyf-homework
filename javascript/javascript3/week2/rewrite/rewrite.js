@@ -12,22 +12,22 @@
 // })
 
 //geolocation
-console.log(navigator.geolocation.getCurrentPosition);
+console.log(navigator.geolocation.getCurrentPosition(myPosition));
 
 const positionPromise = new Promise((resolve,reject)=>{
     if(navigator.geolocation)
-    resolve(getCurrentPosition());
+    resolve(getCurrentPosition(myPosition));
     else{
     reject();
     }
 })
 
-function getCurrentPosition(){
 
-}
-
-positionPromise.then((getLocation)=>{
+positionPromise.then((myPosition)=>{
     console.log(getLocation.coords.lat);
     console.log(getLocation.coords.lat);
 })
-
+const myPosition = function (){
+    console.log(getLocation.coords.lat);
+    console.log(getLocation.coords.lat);
+}
