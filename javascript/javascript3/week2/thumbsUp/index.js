@@ -5,3 +5,4 @@ function getRandomInt(min, max) {
 }
 
 document.body.classList.add(`gradient-${getRandomInt(1,4)}`);
+
