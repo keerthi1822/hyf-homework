@@ -1,51 +1,42 @@
-let acceptBtn = document.querySelector('.accept');
-let rejectBtn = document.querySelector('.reject');
-const arrayLi = Array.from(document.querySelectorAll('ul>li'));
+let acceptBtn = document.querySelector(".accept");
+let rejectBtn = document.querySelector(".reject");
+const arrayLi = Array.from(document.querySelectorAll("ul>li"));
 
-//when the buttons clicked
+//select buttons and put in an array
+const arrayBtn = Array.from(document.querySelectorAll("button"));
+console.log(arrayBtn);
 
-  const arrayBtn = Array.from(document.querySelectorAll('button'));
-  console.log(arrayBtn);
-
- 
-
-  let animateLiOut = function (){
-    arrayLi[0].style = "transform:translateX(1000px)";
-      return new Promise((resolve,reject)=>{
-     resolve();
+//defining function animateLiOut
+function animateLiOut() {
+  //create a promise and call resolve
+  return new Promise((resolve, reject) => {
+    //when the buttons clicked
+    acceptBtn.addEventListener("click", () => {
+      arrayLi[0].style = "transform:translateX(1000px)";
+      resolve();
     });
+  });
+}
 
-  acceptBtn.addEventListener("click", animateLiOut());
+//defining animateNextLiIntoView
+function animateNextLiIntoView() {
+  arrayLi[1].style = "opacity: 1; transform: scale(1);";
+}
 
- 
-
-    function animateNextLiIntoView(){
-    arrayLi[1].style = "opacity: 1; transform: scale(1);"
-    }
-  
- 
- }
-  animateLiOut().then(()=>{
-    animateNextLiIntoView();
-    
-    });
-
-
-  
-
-
-
+//Then function defined
+animateLiOut().then(() => {
+  animateNextLiIntoView();
+});
 
 // function returningPromise(){
 
 //   return new Promise((resolve,reject)=>{
 //     if()
 //       resolve();
-   
-    
+
 //     if()
 //     reject();
-    
+
 //   })
 // }
 
@@ -55,5 +46,14 @@ const arrayLi = Array.from(document.querySelectorAll('ul>li'));
 
 
 
+acceptBtn.addEventListener("click", animateLiOut);
 
+//create a promise and call resolve
+let eventPromise = new Promise((resolve,reject)=>{
+   resolve();
+  });
 
+//defining function animateLiOut 
+function animateLiOut () {
+  arrayLi[0].style = "transform:translateX(1000px)";
+}

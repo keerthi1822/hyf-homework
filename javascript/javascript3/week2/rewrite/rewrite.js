@@ -1,4 +1,3 @@
-
 //reWritting timeout function using promise
 // function rewriteTimeOutPromise(time){
 //     return new Promise((resolve)=>{
@@ -12,22 +11,36 @@
 // })
 
 //geolocation
-console.log(navigator.geolocation.getCurrentPosition(myPosition));
+//console.log(navigator.geolocation.getCurrentPosition((myPosition));
 
-const positionPromise = new Promise((resolve,reject)=>{
-    if(navigator.geolocation)
-    resolve(getCurrentPosition(myPosition));
-    else{
-    reject();
+function getCurrentLocation() {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+        
+        navigator.geolocation.getCurrentPosition((position)=>{
+            resolve(position);
+            
+        },(errmsg)=>{
+            reject(errmsg);
+        })
+      //    resolve(getCurrentPosition(myPosition));
+    } else {
+      reject();
     }
-})
-
-
-positionPromise.then((myPosition)=>{
-    console.log(getLocation.coords.lat);
-    console.log(getLocation.coords.lat);
-})
-const myPosition = function (){
-    console.log(getLocation.coords.lat);
-    console.log(getLocation.coords.lat);
+  });
 }
+getCurrentLocation().then((position)=>{
+    console.log(position);
+}).catch(()=>{
+    console.log("some error in loading");
+})
+
+
+// positionPromise.then(myPosition => {
+//   console.log(getLocation.coords.lat);
+//   console.log(getLocation.coords.lat);
+// });
+// const myPosition = function() {
+//   console.log(getLocation.coords.lat);
+//   console.log(getLocation.coords.lat);
+// };
