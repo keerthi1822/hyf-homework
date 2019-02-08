@@ -1,3 +1,4 @@
+// creating an Array of objects
 const likesAndDislikesArray = [
   {
     name: "Listening to Music",
@@ -25,17 +26,55 @@ const likesAndDislikesArray = [
     img: "Shopping.jpg"
   },
   {
+    name: "Shopping",
+    description: "Only on discount period....hehehe",
+    img: "Shopping.jpg"
+  },
+  {
     name: "Indoor games",
     description: "some times",
     img: "gamesindoor.jpg"
   },
   {
+    name: "Cooking",
+    description: "No cooking please",
+    img: "cooking.jpg"
+  },
+  {
     name: "Go for a walk",
     description: "some times",
-    img: ""
+    img: "walk.jpg"
+  },
+  {
+    name: "Indoor games",
+    description: "some times",
+    img: "gamesindoor.jpg"
   }
 ];
 
+//Display list items on to the screen
+
+let activity = document.querySelectorAll("li");
+console.log(activity);
+
+for (let i = 0; i < likesAndDislikesArray.length; i++) {
+  activity[i].innerHTML = "";
+
+  let headerName = document.createElement("h3");
+  headerName.innerHTML = likesAndDislikesArray[i].name;
+  activity[i].appendChild(headerName);
+
+  let activityImg = document.createElement("img");
+  activityImg.src = likesAndDislikesArray[i].img;
+  activityImg.width = 200;
+  activity[i].appendChild(activityImg);
+}
+
+//Adding event listener to button , creating function animateLiOut and returning promise
+
+let index = 0;
+
+//selecting buttons
 let acceptBtn = document.querySelector(".accept");
 let rejectBtn = document.querySelector(".reject");
 const arrayLi = Array.from(document.querySelectorAll("ul>li"));
@@ -45,10 +84,9 @@ const arrayBtn = Array.from(document.querySelectorAll("button"));
 console.log(arrayBtn);
 
 //defining function animateLiOut
-function animateLiOut() {
-  arrayLi[0].style = "transform:translateX(1000px)";
+function animateLiOut(i) {
+  arrayLi[index].style = "transform:translateX(1000px)";
   return new Promise((resolve, reject) => {
-    //when the buttons clicked
     setTimeout(() => {
       resolve();
     }, 700);
@@ -56,14 +94,14 @@ function animateLiOut() {
 }
 
 //defining animateNextLiIntoView
-function animateNextLiIntoView() {
-  arrayLi[1].style = "opacity: 1; transform: scale(1);";
+function animateNextLiIntoView(nextLi) {
+  arrayLi[nextLi].style = "opacity: 1; transform: scale(1);";
 }
-//The click listener should stand alone.
 
+//adding event listener to button
 acceptBtn.addEventListener("click", () => {
-  animateLiOut()
-    .then(() => {
-        animateNextLiIntoView();
-    });
+  animateLiOut(index).then(() => {
+    animateNextLiIntoView(index + 1);
+    index++;
+  });
 });

@@ -21,9 +21,9 @@ function getCurrentLocation() {
             resolve(position);
             
         },(errmsg)=>{
-            reject(errmsg);
+            reject(errmsg)
         })
-      //    resolve(getCurrentPosition(myPosition));
+    
     } else {
       reject();
     }
