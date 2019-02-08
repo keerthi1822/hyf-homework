@@ -43,7 +43,7 @@ const likesAndDislikesArray = [
   {
     name: "Go for a walk",
     description: "some times",
-    img: "walk.jpg"
+    img: "Walk.jpg"
   },
   {
     name: "Indoor games",
@@ -78,13 +78,16 @@ let index = 0;
 let acceptBtn = document.querySelector(".accept");
 let rejectBtn = document.querySelector(".reject");
 const arrayLi = Array.from(document.querySelectorAll("ul>li"));
+//declaring empty arrays to push elements dynamically
+const acceptedItems=[];
+const rejectedItems=[];
 
 //select buttons and put in an array
 const arrayBtn = Array.from(document.querySelectorAll("button"));
 console.log(arrayBtn);
 
 //defining function animateLiOut
-function animateLiOut(i, str) {
+function animateLiOut(index, str) {
   if (str == "accept") {
     arrayLi[index].style = "transform:translateX(1000px)";
   }
@@ -94,48 +97,50 @@ function animateLiOut(i, str) {
   if (index < arrayLi.length) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve();
+         resolve();
       }, 700);
     });
-  } else {
-    reject(index);
+  }
+ else {
+    reject(error);
   }
 }
 
 //defining animateNextLiIntoView
 function animateNextLiIntoView(nextLi) {
   arrayLi[nextLi].style = "opacity: 1; transform: scale(1);";
-  // isindexReachedEndOfList(index);
 }
 
 //adding event listener to button
 acceptBtn.addEventListener("click", () => {
-  animateLiOut(index, "accept")
-    .then(() => {
-      animateNextLiIntoView(index + 1);
-      index++;
-    })
-    .catch(() => {
-      arrayLi[index].style = "transform: none";
-    });
+  animateLiOut(index, "accept").then(() => {
+    animateNextLiIntoView(index + 1);
+    acceptedItems.push(arrayLi[index].innerHTML);
+    console.log("accepted: "+acceptedItems);
+    index++;
+  });
 });
 
 //adding event listener to button
 rejectBtn.addEventListener("click", () => {
-  animateLiOut(index, "reject")
-    .then(() => {
-      animateNextLiIntoView(index + 1);
-      index++;
-    })
-    .catch(() => {
-      arrayLi[index].style = "transform: none";
-    });
+  animateLiOut(index, "reject").then(() => {
+    animateNextLiIntoView(index + 1);
+    rejectedItems.push(arrayLi[index].innerHTML);
+    console.log("rejected: "+rejectedItems);
+    index++;
+  });
+});
+animateLiOut().catch((errMsg) => {
+  console.log(errMsg);
+  arrayLi[index].style = "transform: none;";
 });
 
-// function isindexReachedEndOfList(index) {
-//   if (index === arrayLi.length) {
-//     console.log(arrayLi.length);
-//     console.log(index);
-//     arrayLi[nextLi].style = "transform: none";
-//   }
-// }
+//additional feature
+//collecting accepted and rejected items
+console.log(acceptedItems);
+console.log(rejectedItems);
+
+
+
+
+
