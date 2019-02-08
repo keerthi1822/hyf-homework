@@ -83,21 +83,23 @@ const arrayLi = Array.from(document.querySelectorAll("ul>li"));
 const arrayBtn = Array.from(document.querySelectorAll("button"));
 console.log(arrayBtn);
 
-
-
 //defining function animateLiOut
-function animateLiOut(i) {
-  arrayLi[index].style = "transform:translateX(1000px)";
+function animateLiOut(i, str) {
+  if (str == "accept") {
+    arrayLi[index].style = "transform:translateX(1000px)";
+  }
+  if (str == "reject") {
+    arrayLi[index].style = "transform:translateX(-1000px)";
+  }
   if (index < arrayLi.length) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 700);
-  });
-}
-else{
-  reject(index);
-}
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 700);
+    });
+  } else {
+    reject(index);
+  }
 }
 
 //defining animateNextLiIntoView
@@ -106,37 +108,29 @@ function animateNextLiIntoView(nextLi) {
   // isindexReachedEndOfList(index);
 }
 
-
-
 //adding event listener to button
 acceptBtn.addEventListener("click", () => {
-  animateLiOut(index).then(() => {
-    animateNextLiIntoView(index + 1);
-    index++;
-    }).catch(()=>{
-      arrayLi[index].style = "transform: none";
+  animateLiOut(index, "accept")
+    .then(() => {
+      animateNextLiIntoView(index + 1);
+      index++;
     })
+    .catch(() => {
+      arrayLi[index].style = "transform: none";
+    });
 });
 
 //adding event listener to button
 rejectBtn.addEventListener("click", () => {
-  animateLiOut(index).then(() => {
-    animateNextLiIntoView(index + 1);
-    index++;
-    }).catch(()=>{
-      arrayLi[index].style = "transform: none";
+  animateLiOut(index, "reject")
+    .then(() => {
+      animateNextLiIntoView(index + 1);
+      index++;
     })
+    .catch(() => {
+      arrayLi[index].style = "transform: none";
+    });
 });
-
-
-
-
-
-
-
-
-
-
 
 // function isindexReachedEndOfList(index) {
 //   if (index === arrayLi.length) {
