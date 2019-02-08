@@ -118,6 +118,16 @@ acceptBtn.addEventListener("click", () => {
     })
 });
 
+//adding event listener to button
+rejectBtn.addEventListener("click", () => {
+  animateLiOut(index).then(() => {
+    animateNextLiIntoView(index + 1);
+    index++;
+    }).catch(()=>{
+      arrayLi[index].style = "transform: none";
+    })
+});
+
 
 
 
