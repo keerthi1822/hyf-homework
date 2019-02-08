@@ -83,25 +83,55 @@ const arrayLi = Array.from(document.querySelectorAll("ul>li"));
 const arrayBtn = Array.from(document.querySelectorAll("button"));
 console.log(arrayBtn);
 
+
+
 //defining function animateLiOut
 function animateLiOut(i) {
   arrayLi[index].style = "transform:translateX(1000px)";
+  if (index < arrayLi.length) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
     }, 700);
   });
 }
+else{
+  reject(index);
+}
+}
 
 //defining animateNextLiIntoView
 function animateNextLiIntoView(nextLi) {
   arrayLi[nextLi].style = "opacity: 1; transform: scale(1);";
+  // isindexReachedEndOfList(index);
 }
+
+
 
 //adding event listener to button
 acceptBtn.addEventListener("click", () => {
   animateLiOut(index).then(() => {
     animateNextLiIntoView(index + 1);
     index++;
-  });
+    }).catch(()=>{
+      arrayLi[index].style = "transform: none";
+    })
 });
+
+
+
+
+
+
+
+
+
+
+
+// function isindexReachedEndOfList(index) {
+//   if (index === arrayLi.length) {
+//     console.log(arrayLi.length);
+//     console.log(index);
+//     arrayLi[nextLi].style = "transform: none";
+//   }
+// }
