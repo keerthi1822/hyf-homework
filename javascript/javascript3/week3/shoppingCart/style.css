@@ -1,3 +1,12 @@
-ul li {
-  display: inline;
+.inline {
+  
+  display: flex;
+  max-width: 80%;
+  justify-content: space-between;
+ 
+}
+
+ul li{
+    list-style-type: none;
+    flex-grow:1;
 }

@@ -1,17 +1,17 @@
-const availableProducts = [
-  "Washing Machine",
-  "Fridge",
-  "Vaccum cleaner",
-  "Television",
-  "Micro wave",
-  "Oven",
-  "Lamp",
-  "Bike",
-  "Vase",
-  "Blender",
-  "Kommode",
-  "Grill"
-];
+// const availableProducts = [
+//   "Washing Machine",
+//   "Fridge",
+//   "Vaccum cleaner",
+//   "Television",
+//   "Micro wave",
+//   "Oven",
+//   "Lamp",
+//   "Bike",
+//   "Vase",
+//   "Blender",
+//   "Kommode",
+//   "Grill"
+// ];
 
 class Product {
   constructor(name, price) {
@@ -20,7 +20,7 @@ class Product {
   }
 }
 
-const newProduct = class ShoppingCart {
+class ShoppingCart {
   constructor(products) {
     this.products = products;
   }
@@ -42,14 +42,23 @@ const newProduct = class ShoppingCart {
     // Implement functionality here
   }
 
-  renderProducts() {
+  renderProducts(productName) {
     // Implement functionality here
-    for (i = 0; i < availableProducts.length; i++) {
-      const uList = document.querySelector("ul");
-      const list = document.createElement("li");
-      list.innerHTML = availableProducts[Math.floor(Math.random() * 12)];
-      uList.appendChild("list");
-    }
+
+    const uList = document.querySelector("section > ul");
+
+    const list = document.createElement("li");
+    const divElement = document.createElement("div");
+    const inputElement = document.createElement("input");
+    inputElement.setAttribute("type", "checkbox");
+    const divProductName = document.createElement("div");
+    // const divProductPrice = document.createElement("div");
+    divProductName.innerHTML = productName;
+    //divProductPrice.innerHTML = price;
+    inputElement.appendChild(divProductName);
+    divElement.appendChild(inputElement);
+    list.appendChild(divElement);
+    uList.appendChild(list);
   }
 
   getUser() {
@@ -61,21 +70,26 @@ const newProduct = class ShoppingCart {
       });
     // Implement functionality here
   }
-};
+}
 
-// const product1 = new Product("Bell", 56);
+
+//creating instance of class shopping cart
+const productsInCart = new ShoppingCart([]);
+
+//adding event listener to checkbox
+document.querySelector("input").addEventListener("input", function() {
+  const selectedProduct = document.querySelector("input>div");
+  productsInCart.renderProducts(selectedProduct.innerHTML);
+  productsInCart.addProduct(selectedProduct.innerHTML);
+});
+
+//productsInCart.getUser();
+
+
+
+
+//const product1 = new Product("Bell", 56);
 // const product2 = new Product("Speaker", 5);
 // const product3 = new Product("Speaker2", 562);
 // const product4 = new Product("Speaker3", 98);
 // const product5 = new Product("Speaker4", 40);
-
-const productsInCart = new ShoppingCart([]);
-
-productsInCart.addProduct("Bell");
-productsInCart.addProduct("Speaker");
-productsInCart.addProduct("Speaker2");
-console.log(productsInCart);
-
-productsInCart.removeProduct("Speaker2");
-
-productsInCart.getUser();
