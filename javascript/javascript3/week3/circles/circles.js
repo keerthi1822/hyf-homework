@@ -13,19 +13,19 @@ const colours = [
 
 function findX() {
   if (MOUSE_X === 0) {
-    return Math.floor(Math.random() * 600);
+    return Math.floor(Math.random() * 1380);
   }
   return MOUSE_X
 }
 
 function findY() {
   if (MOUSE_Y === 0) {
-    return Math.floor(Math.random() * 600);
+    return Math.floor(Math.random() * 680);
   }
   return MOUSE_Y;
 }
 function findRadius() {
-  return Math.floor(Math.random() * 8);
+  return Math.floor(Math.random() * 40);
 }
 function findColour() {
   return colours[Math.floor(Math.random() * 10)];
@@ -78,7 +78,7 @@ setInterval(() => {
 
   let ourCircle = new Circle(x, y, findRadius(), 0, 2 * Math.PI, findColour())
   ourCircle.draw()
-}, 100)
+}, 40)
 
 
 
