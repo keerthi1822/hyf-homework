@@ -1,12 +1,26 @@
-.inline {
-  
+body {
+  display: flex;
+}
+main {
+  margin: 0;
+  flex: 1;
+  border: 2px groove #550000;
+}
+.display {
   display: flex;
   max-width: 80%;
   justify-content: space-between;
+  padding: 10px;
+  list-style-type: none;
+  
+  border-bottom: 1px solid gray;
  
 }
 
-ul li{
-    list-style-type: none;
-    flex-grow:1;
+.display div{
+    width:33%;
+}
+.cart {
+  flex: 2;
+  max-width: 40%;
 }

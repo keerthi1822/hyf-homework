@@ -26,7 +26,9 @@ class ShoppingCart {
   }
 
   addProduct(product) {
+      
     this.products.push(product);
+    console.log(product);
     // Implement functionality here
   }
 
@@ -54,6 +56,7 @@ class ShoppingCart {
     const divProductName = document.createElement("div");
     // const divProductPrice = document.createElement("div");
     divProductName.innerHTML = productName;
+    console.log( divProductName.innerHTML);
     //divProductPrice.innerHTML = price;
     inputElement.appendChild(divProductName);
     divElement.appendChild(inputElement);
@@ -75,10 +78,11 @@ class ShoppingCart {
 
 //creating instance of class shopping cart
 const productsInCart = new ShoppingCart([]);
-
+// productsInCart.renderProducts("toys");
+// productsInCart.renderProducts("PC");
 //adding event listener to checkbox
-document.querySelector("input").addEventListener("input", function() {
-  const selectedProduct = document.querySelector("input>div");
+document.querySelector(".cart ul li  input > div").addEventListener("change", function() {
+  const selectedProduct = document.querySelector(".inline input>div");
   productsInCart.renderProducts(selectedProduct.innerHTML);
   productsInCart.addProduct(selectedProduct.innerHTML);
 });
