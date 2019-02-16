@@ -1,4 +1,4 @@
-
+//Mapping array of fetch object to find owner, fullname, repository urls
 function mapItems(dataItems){
 dataItems.map((dataitem)=>{
     console.log(dataitem.full_name);
@@ -8,7 +8,7 @@ dataItems.map((dataitem)=>{
   
 });
 }
-
+//rendering data to html using DOM
 function renderList(owner,fullname,repourl){
 const uList = document.querySelector('ul');
     const liElement = document.createElement('li');
@@ -27,6 +27,7 @@ const uList = document.querySelector('ul');
     liElement.appendChild(uListChild);
     uList.appendChild(liElement);
 }
+//returning 3 promises p1,p2,p3 
 let p1 = fetch('https://api.github.com/search/repositories?q=user:SQasemi')
     .then(response=> response.json())
     .then((data)=>{
@@ -51,5 +52,5 @@ let p3 = fetch('https://api.github.com/search/repositories?q=user:humayunadilsha
     // console.log(data.items);
    mapItems(data.items);
 });
-
+//using Promise All
 Promise.all([p1,p2,p3]);
