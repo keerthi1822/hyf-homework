@@ -87,8 +87,9 @@ class Quiz {
   }
 
   //method for stopwatch
-  stopwatch() {
+  /* stopwatch() {
     const spanElementForStopWatch = document.createElement("span");
+    spanElementForStopWatch.style = "backgroundColor = gray";
     spanElementForStopWatch.setAttribute("class", "stopwatch");
     let i = 1;
     let stopwatchInterval = setInterval(() => {
@@ -101,17 +102,16 @@ class Quiz {
     }, 1000);
 
     header.appendChild(spanElementForStopWatch);
-   
-  }
+   return stopwatchInterval;
+  } */
 
   //method to stop stopwatch
-  stopStopwatch() {
-    const timeTakenToFinishQuiz = document.querySelector(".stopwatch")
-      .innerHTML;
+ /*  stopStopwatch() {
+    const timeTakenToFinishQuiz = document.querySelector(".stopwatch").innerHTML;
     console.log(timeTakenToFinishQuiz);
     document.querySelector(".stopwatch").innerHTML = timeTakenToFinishQuiz;
     clearInterval(stopwatchInterval);
-  }
+  } */
 } //end of class
 
 //Instance of the class
@@ -129,10 +129,10 @@ buttonStopWatch.innerHTML = " click for stopwatch";
 header.appendChild(buttonStopWatch);
 
 //adding eventlistener to stopwatch button
-buttonStopWatch.addEventListener("click", () => {
+/* buttonStopWatch.addEventListener("click", () => {
    myFirstQuiz.stopwatch();
  
-});
+}); */
 
 //console.log(myFirstQuiz);
 //console.log(myFirstQuiz.fetchQuestions());
@@ -149,14 +149,14 @@ myFirstQuiz.fetchQuestions().then(questions => {
 //adding event listener to button 'getscore'
 buttonGetScore.addEventListener("click", questions => {
   //checking each question 'iscorrect' after 'getscore' button is pressed
-  myFirstQuiz.isCorrect();
+ /*  myFirstQuiz.isCorrect(); */
 
   //calling method getscore after button pressed
   const finalScore = myFirstQuiz.getScore();
   //console.log(finalScore);
 
   //calling stopstopwatch method to stop stopwatch
-  myFirstQuiz.stopStopwatch();
+  /* myFirstQuiz.stopStopwatch(); */
 
   //calling method renderScore to render score on displayscreen
   myFirstQuiz.renderScore(finalScore);
