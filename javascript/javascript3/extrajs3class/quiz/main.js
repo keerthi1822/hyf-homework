@@ -149,7 +149,7 @@ myFirstQuiz.fetchQuestions().then(questions => {
 //adding event listener to button 'getscore'
 buttonGetScore.addEventListener("click", questions => {
   //checking each question 'iscorrect' after 'getscore' button is pressed
- /*  myFirstQuiz.isCorrect(); */
+  myFirstQuiz.isCorrect();
 
   //calling method getscore after button pressed
   const finalScore = myFirstQuiz.getScore();
