@@ -14,6 +14,7 @@ class Quiz {
 
   //method for rendering  questions on to the page
   renderQuestions(questions) {
+    
     //selecting Ul
     const ulQuestions = document.querySelector(".questions > ul");
     //creating li's for rendering title , question and options by looping
@@ -26,6 +27,7 @@ class Quiz {
       h4.innerHTML = question.content;
       li.appendChild(h4);
       const selectElement = document.createElement("select");
+
       //creatiing options for each question
       question.options.forEach(option => {
         const optionsToSelectAnswer = document.createElement("option");
@@ -34,10 +36,11 @@ class Quiz {
         selectElement.appendChild(optionsToSelectAnswer);
       });
       li.appendChild(selectElement);
+
       //creating p element to render result is correct or in correct
-      const indicateIsCorrect = document.createElement("p");
+      /* const indicateIsCorrect = document.createElement("p");
       indicateIsCorrect.setAttribute("class", "isCorrect");
-      li.appendChild(indicateIsCorrect);
+      li.appendChild(indicateIsCorrect); */
       ulQuestions.appendChild(li);
     });
   }
@@ -48,14 +51,22 @@ class Quiz {
       .length;
   }
 
-  //method to render option of each question is correct or incorrect
-  isCorrect() {
+  
+
+  //method to render final score on to the screen
+  renderScore(score) {
+    const result = document.querySelector(".result");
+
+//method to render option of each question is correct or incorrect
     const selectedOptions = document.querySelectorAll("option:checked");
     //console.log(selectedOptions);
+    const liArray = document.querySelectorAll("li");
 
-    selectedOptions.forEach(selectedOption => {
+    selectedOptions.forEach((selectedOption,index) => {
       //console.log(index);
-      const pTagForIsCorrect = document.querySelector(".isCorrect");
+      const pTagForIsCorrect = document.createElement("p");
+      pTagForIsCorrect.setAttribute("class", "isCorrect");
+      
 
       if (selectedOption.getAttribute("data-is-answer") === "true") {
         console.log(selectedOption.getAttribute("data-is-answer"));
@@ -64,13 +75,10 @@ class Quiz {
         console.log(selectedOption.getAttribute("data-is-answer"));
         pTagForIsCorrect.innerHTML = "incorrect";
       }
+      liArray[index].appendChild(pTagForIsCorrect);
     });
-  }
 
-  //method to render final score on to the screen
-  renderScore(score) {
-    const result = document.querySelector(".result");
-    //check for confetti
+    //check for confetti with score
     if (score > 0) {
       result.innerHTML =
         "Congratulations you got " + score + "/2 question right, well done";
@@ -87,32 +95,37 @@ class Quiz {
   }
 
   //method for stopwatch
-  /* stopwatch() {
-    const spanElementForStopWatch = document.createElement("span");
-    spanElementForStopWatch.style = "backgroundColor = gray";
-    spanElementForStopWatch.setAttribute("class", "stopwatch");
-    let i = 1;
+  stopwatch() {
+    
     let stopwatchInterval = setInterval(() => {
 
       //stopwatch for 1 minute
-      if (i <= 60) {
-        spanElementForStopWatch.innerHTML = i;
-        i++;
+      seconds++;
+      if (seconds >= 60) {
+          seconds = 0;
+          minutes++;
+        spanElementForStopWatch.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
       }
     }, 1000);
 
     header.appendChild(spanElementForStopWatch);
    return stopwatchInterval;
-  } */
+  }
 
   //method to stop stopwatch
- /*  stopStopwatch() {
+  stopStopwatch() {
     const timeTakenToFinishQuiz = document.querySelector(".stopwatch").innerHTML;
     console.log(timeTakenToFinishQuiz);
     document.querySelector(".stopwatch").innerHTML = timeTakenToFinishQuiz;
     clearInterval(stopwatchInterval);
-  } */
+  }
 } //end of class
+
+const spanElementForStopWatch = document.createElement("span");
+    spanElementForStopWatch.textContent="00:00";
+    spanElementForStopWatch.style.backgroundColor = "lightgray";
+    spanElementForStopWatch.setAttribute("class", "stopwatch");
+    let seconds=0,minutes=0;
 
 //Instance of the class
 const myFirstQuiz = new Quiz("quiz");
@@ -148,15 +161,13 @@ myFirstQuiz.fetchQuestions().then(questions => {
 
 //adding event listener to button 'getscore'
 buttonGetScore.addEventListener("click", questions => {
-  //checking each question 'iscorrect' after 'getscore' button is pressed
-  myFirstQuiz.isCorrect();
-
+  
   //calling method getscore after button pressed
   const finalScore = myFirstQuiz.getScore();
   //console.log(finalScore);
 
   //calling stopstopwatch method to stop stopwatch
-  /* myFirstQuiz.stopStopwatch(); */
+  //myFirstQuiz.stopStopwatch();
 
   //calling method renderScore to render score on displayscreen
   myFirstQuiz.renderScore(finalScore);
