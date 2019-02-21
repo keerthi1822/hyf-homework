@@ -73,9 +73,9 @@ class Quiz {
     });
 
     //check for confetti with score
-    if (score > 0) {
+    if (score > 4) {
       result.innerHTML =
-        "Congratulations you got " + score + "/2 question right, well done";
+        "Congratulations you got " + score + "/6 question right, well done";
       let confettiSettings = { target: "confetti" };
       let confetti = new ConfettiGenerator(confettiSettings);
       confetti.render();
@@ -112,7 +112,8 @@ class Quiz {
     const timeTakenToFinishQuiz = document.querySelector(".stopwatch")
       .innerHTML;
     console.log(timeTakenToFinishQuiz);
-    document.querySelector(".stopwatch").innerHTML = timeTakenToFinishQuiz;
+    document.querySelector(".stopwatch").textContent = timeTakenToFinishQuiz;
+    alert("time taken to you to finish"+timeTakenToFinishQuiz);
     clearInterval(stopwatchInterval);
   }
 } //end of class
@@ -126,7 +127,6 @@ const buttonGetScore = document.querySelector("button");
 //selecting header to render button for stopwatch
 const header = document.querySelector("header");
 
-//creating button for stopwatch
 
 //calling method fetch questions then rendering questions to the browser
 myFirstQuiz.fetchQuestions().then(questions => {
