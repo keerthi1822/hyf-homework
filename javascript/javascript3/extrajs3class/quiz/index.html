@@ -21,11 +21,23 @@
     </header>
     <main>
       <p class="loading">loading...</p>
+      <section class="userdefine">
+        Select difficulty here:
+        <input type="radio" name="difciculty" value="easy" />Easy
+        <input type="radio" name="difciculty" value="hard" />Hard
+      </section>
+      <section class="displyTime">
+
+      </section>
+
       <section class="questions">
         <ul></ul>
+        <div id = "buttons">
         <button>
           Get score
         </button>
+        <button id="tryagain">try again</button>
+      </div>
       </section>
       <div class="result"></div>
       <canvas id="confetti"></canvas>
