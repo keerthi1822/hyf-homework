@@ -134,6 +134,7 @@ myFirstQuiz.fetchQuestions().then(questions => {
   //removing loading P element
   document.querySelector(".loading").remove();
   myFirstQuiz.renderQuestions(questions);
+  alert("Start stop watch before you start");
   const radioButtonsCheckedList = document.querySelectorAll(
     "input[type=radio]"
   );
