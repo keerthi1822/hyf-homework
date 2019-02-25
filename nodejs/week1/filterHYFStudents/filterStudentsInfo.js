@@ -14,6 +14,26 @@ class HYFDataBase {
   }
   addStudentDetails(studentDetails) {
     this.studentsDetails.push(studentDetails);
+    console.log(this.studentsDetails)
+  }
+  getStudentsList() {
+    const studentsList = this.studentsDetails.map(student => {
+      return { Name: student.name, classid: student.classId };
+    });
+    console.log(studentsList);
+  }
+
+  getListByClass(classid){
+      const classList = this.studentsDetails.filter((student)=>{
+          return (student.classId == classid)
+      });
+      console.log(classList);
+  }
+  getStudentDetailByName(name){
+    const detailsForSpecificStudent = this.studentsDetails.filter((student)=>{
+        return (student.name == name)
+    });
+    console.log(detailsForSpecificStudent); 
   }
 }
 //creating instance of class 'HYFDataBase'
@@ -43,3 +63,20 @@ HYFStudents.addStudentDetails(adil);
 //logout Array of studentsDetails
 console.log("Here are some HYF-Students Details");
 console.log(HYFStudents);
+
+//Getting list of all HYF-students
+console.log('List of HYF students');
+HYFStudents.getStudentsList();
+
+//getting  studentsList by classId
+console.log('students from class 07');
+HYFStudents.getListByClass('07');
+console.log('students from class 08');
+HYFStudents.getListByClass('08');
+console.log('students from class 09');
+HYFStudents.getListByClass('09');
+console.log('students from class 06');
+HYFStudents.getListByClass('06');
+
+HYFStudents.getStudentDetailByName('Sana');
+HYFStudents.getStudentDetailByName('Swapna');
