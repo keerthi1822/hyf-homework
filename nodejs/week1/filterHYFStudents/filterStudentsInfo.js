@@ -14,7 +14,7 @@ class HYFDataBase {
   }
   addStudentDetails(studentDetails) {
     this.studentsDetails.push(studentDetails);
-    console.log(this.studentsDetails)
+    console.log(this.studentsDetails);
   }
   getStudentsList() {
     const studentsList = this.studentsDetails.map(student => {
@@ -23,23 +23,37 @@ class HYFDataBase {
     console.log(studentsList);
   }
 
-  getListByClass(classid){
-      const classList = this.studentsDetails.filter((student)=>{
-          return (student.classId == classid)
-      });
-      console.log(classList);
-  }
-  getStudentDetailByName(name){
-    const detailsForSpecificStudent = this.studentsDetails.filter((student)=>{
-        return (student.name == name)
+  getListByClass(classid) {
+    const classList = this.studentsDetails.filter(student => {
+      return student.classId == classid;
     });
-    console.log(detailsForSpecificStudent); 
+    console.log(classList);
+  }
+  getStudentDetailByName(name) {
+    const detailsForSpecificStudent = this.studentsDetails.filter(student => {
+      return student.name == name;
+    });
+    if (detailsForSpecificStudent.length === 0) {
+      console.log("No such student present");
+    } else {
+      console.log(detailsForSpecificStudent);
+    }
+  }
+  editStudentInfo(studentInfo){
+   this.studentsDetails = this.studentsDetails.filter((student)=>{
+        return (studentInfo.name == student.name)
+    }).map((student)=>{
+        return studentInfo
+    })
+    console.log(this.studentsDetails)
   }
 }
+
+
 //creating instance of class 'HYFDataBase'
 const HYFStudents = new HYFDataBase([]);
 //creating instances for class Student
-const keerthi = new Student("Keerthi", "08", "kkk@mail.com", "777777");
+const keerthi = new Student("Keerthi", "08", "kkk@mail.com", "7777777");
 const kseina = new Student("Kseina", "08", "ksss@mail.com", "333333");
 const yana = new Student("Yana", "07", "yyy@mail.com", "44444");
 const zoe = new Student("Zoe", "06", "zzzz@mail.com", "222222");
@@ -65,18 +79,22 @@ console.log("Here are some HYF-Students Details");
 console.log(HYFStudents);
 
 //Getting list of all HYF-students
-console.log('List of HYF students');
-HYFStudents.getStudentsList();
+// console.log("List of HYF students");
+// HYFStudents.getStudentsList();
 
 //getting  studentsList by classId
-console.log('students from class 07');
-HYFStudents.getListByClass('07');
-console.log('students from class 08');
-HYFStudents.getListByClass('08');
-console.log('students from class 09');
-HYFStudents.getListByClass('09');
-console.log('students from class 06');
-HYFStudents.getListByClass('06');
+// console.log("students from class 07");
+// HYFStudents.getListByClass("07");
+// console.log("students from class 08");
+// HYFStudents.getListByClass("08");
+// console.log("students from class 09");
+// HYFStudents.getListByClass("09");
+// console.log("students from class 06");
+// HYFStudents.getListByClass("06");
 
-HYFStudents.getStudentDetailByName('Sana');
-HYFStudents.getStudentDetailByName('Swapna');
+// HYFStudents.getStudentDetailByName("Sana");
+// HYFStudents.getStudentDetailByName("Ss");
+
+//edit student details
+console.log('editted student info');
+HYFStudents.editStudentInfo({name:'Keerthi',classId:'07',email:'kk@mail.com',phone:'7777777'});
