@@ -8,14 +8,19 @@ class Student {
   }
 }
 
+//creating class for HYFDatabase
 class HYFDataBase {
   constructor(studentsDetails) {
     this.studentsDetails = studentsDetails;
   }
+
+  //method to add students and their details
   addStudentDetails(studentDetails) {
     this.studentsDetails.push(studentDetails);
     console.log(this.studentsDetails);
   }
+
+  //method to get students list
   getStudentsList() {
     const studentsList = this.studentsDetails.map(student => {
       return { Name: student.name, classid: student.classId };
@@ -23,12 +28,15 @@ class HYFDataBase {
     console.log(studentsList);
   }
 
+  //method to get student using classId
   getListByClass(classid) {
     const classList = this.studentsDetails.filter(student => {
       return student.classId == classid;
     });
     console.log(classList);
   }
+
+  //method to get student using name
   getStudentDetailByName(name) {
     const detailsForSpecificStudent = this.studentsDetails.filter(student => {
       return student.name == name;
@@ -39,16 +47,17 @@ class HYFDataBase {
       console.log(detailsForSpecificStudent);
     }
   }
-  editStudentInfo(studentInfo){
-    this.studentsDetails.forEach((student,index)=>{
-        if(student.name === studentInfo.name){
-          console.log(index);
-          this.studentsDetails[index] = studentInfo;
-        }
-    })
+
+  //method to edit student details through name
+  editStudentInfo(studentInfo) {
+    this.studentsDetails.forEach((student, index) => {
+      if (student.name === studentInfo.name) {
+        console.log(index);
+        this.studentsDetails[index] = studentInfo;
+      }
+    });
   }
 }
-
 
 //creating instance of class 'HYFDataBase'
 const HYFStudents = new HYFDataBase([]);
@@ -75,12 +84,12 @@ HYFStudents.addStudentDetails(sharmila);
 HYFStudents.addStudentDetails(adil);
 
 //logout Array of studentsDetails
-/* console.log("Here are some HYF-Students Details");
-console.log(HYFStudents); */
+console.log("Here are some HYF-Students Details");
+console.log(HYFStudents);
 
 //Getting list of all HYF-students
-// console.log("List of HYF students");
-// HYFStudents.getStudentsList();
+console.log("List of HYF students");
+HYFStudents.getStudentsList();
 
 //getting  studentsList by classId
 console.log("students from class 07");
@@ -97,9 +106,19 @@ HYFStudents.getStudentDetailByName("Sana");
 HYFStudents.getStudentDetailByName("Ss");
 
 //edit student details
-console.log('editted student info');
-HYFStudents.editStudentInfo({name:'Keerthi',classId:'07',email:'kk@mail.com',phone:'7777777'});
-HYFStudents.editStudentInfo({name:'Zoe',classId:'07',email:'zzzz@mail.com',phone:'222222'});
+console.log("editted student info");
+HYFStudents.editStudentInfo({
+  name: "Keerthi",
+  classId: "07",
+  email: "kk@mail.com",
+  phone: "7777777"
+});
+HYFStudents.editStudentInfo({
+  name: "Zoe",
+  classId: "07",
+  email: "zzzz@mail.com",
+  phone: "222222"
+});
 
 //print students after editing
 console.log(HYFStudents);
