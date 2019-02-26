@@ -40,12 +40,12 @@ class HYFDataBase {
     }
   }
   editStudentInfo(studentInfo){
-   this.studentsDetails = this.studentsDetails.filter((student)=>{
-        return (studentInfo.name == student.name)
-    }).map((student)=>{
-        return studentInfo
+    this.studentsDetails.forEach((student,index)=>{
+        if(student.name === studentInfo.name){
+          console.log(index);
+          this.studentsDetails[index] = studentInfo;
+        }
     })
-    console.log(this.studentsDetails)
   }
 }
 
@@ -75,26 +75,31 @@ HYFStudents.addStudentDetails(sharmila);
 HYFStudents.addStudentDetails(adil);
 
 //logout Array of studentsDetails
-console.log("Here are some HYF-Students Details");
-console.log(HYFStudents);
+/* console.log("Here are some HYF-Students Details");
+console.log(HYFStudents); */
 
 //Getting list of all HYF-students
 // console.log("List of HYF students");
 // HYFStudents.getStudentsList();
 
 //getting  studentsList by classId
-// console.log("students from class 07");
-// HYFStudents.getListByClass("07");
-// console.log("students from class 08");
-// HYFStudents.getListByClass("08");
-// console.log("students from class 09");
-// HYFStudents.getListByClass("09");
-// console.log("students from class 06");
-// HYFStudents.getListByClass("06");
+console.log("students from class 07");
+HYFStudents.getListByClass("07");
+console.log("students from class 08");
+HYFStudents.getListByClass("08");
+console.log("students from class 09");
+HYFStudents.getListByClass("09");
+console.log("students from class 06");
+HYFStudents.getListByClass("06");
 
-// HYFStudents.getStudentDetailByName("Sana");
-// HYFStudents.getStudentDetailByName("Ss");
+//getting students by name
+HYFStudents.getStudentDetailByName("Sana");
+HYFStudents.getStudentDetailByName("Ss");
 
 //edit student details
 console.log('editted student info');
 HYFStudents.editStudentInfo({name:'Keerthi',classId:'07',email:'kk@mail.com',phone:'7777777'});
+HYFStudents.editStudentInfo({name:'Zoe',classId:'07',email:'zzzz@mail.com',phone:'222222'});
+
+//print students after editing
+console.log(HYFStudents);
