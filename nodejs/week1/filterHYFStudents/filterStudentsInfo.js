@@ -101,12 +101,13 @@ HYFStudents.addStudentDetails({
 console.log("Here are some HYF-Students Details");
 console.log(HYFStudents);
 
+//Trying to add already existing student details
 HYFStudents.addStudentDetails({
   name: "Keerthi",
   classId: "08",
   email: "kkk@mail.com",
   phone: "7777777"
-});
+});//should log 'keerthi  already exist'
 
 //Getting list of all HYF-students
 /* console.log("List of HYF students");
@@ -124,7 +125,8 @@ HYFStudents.getListByClass("06");
 
 //getting students by name
 HYFStudents.getStudentDetailByName("Sana");
-HYFStudents.getStudentDetailByName("Ss");
+//trying to get details of student who is not in the HYF list
+HYFStudents.getStudentDetailByName("Ss");//logout "No such student present"
 
 //edit student details
 console.log("editted student info");
