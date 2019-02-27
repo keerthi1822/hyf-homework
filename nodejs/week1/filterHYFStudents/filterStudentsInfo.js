@@ -1,23 +1,33 @@
 //creating class for student information
-class Student {
+/* class Student {
   constructor(name, classId, email, phone) {
     this.name = name;
     this.classId = classId;
     this.email = email;
     this.phone = phone;
   }
-}
+} */
 
 //creating class for HYFDatabase
-class HYFDataBase {
+class HYFStudentDataBase {
   constructor(studentsDetails) {
-    this.studentsDetails = studentsDetails;
+    this.studentsList = [];
   }
 
   //method to add students and their details
   addStudentDetails(studentDetails) {
-    this.studentsDetails.push(studentDetails);
-    console.log(this.studentsDetails);
+    const checkDuplicate = this.studentsList.filter(student => {
+      return (
+        student.name === studentDetails.name &&
+        student.classId === studentDetails.classId
+      );
+    });
+    //console.log(checkDuplicate);
+    if (checkDuplicate == 0) {
+      this.studentsList.push(studentDetails);
+    } else {
+      console.log(studentDetails.name + " already exist");
+    }
   }
 
   //method to get students list
@@ -30,7 +40,7 @@ class HYFDataBase {
 
   //method to get student using classId
   getListByClass(classid) {
-    const classList = this.studentsDetails.filter(student => {
+    const classList = this.studentsList.filter(student => {
       return student.classId == classid;
     });
     console.log(classList);
@@ -38,7 +48,7 @@ class HYFDataBase {
 
   //method to get student using name
   getStudentDetailByName(name) {
-    const detailsForSpecificStudent = this.studentsDetails.filter(student => {
+    const detailsForSpecificStudent = this.studentsList.filter(student => {
       return student.name == name;
     });
     if (detailsForSpecificStudent.length === 0) {
@@ -50,46 +60,57 @@ class HYFDataBase {
 
   //method to edit student details through name
   editStudentInfo(studentInfo) {
-    this.studentsDetails.forEach((student, index) => {
+    this.studentsList.forEach((student, index) => {
       if (student.name === studentInfo.name) {
         console.log(index);
-        this.studentsDetails[index] = studentInfo;
+        this.studentsList[index] = studentInfo;
       }
     });
   }
 }
 
 //creating instance of class 'HYFDataBase'
-const HYFStudents = new HYFDataBase([]);
+const HYFStudents = new HYFStudentDataBase();
 //creating instances for class Student
-const keerthi = new Student("Keerthi", "08", "kkk@mail.com", "7777777");
-const kseina = new Student("Kseina", "08", "ksss@mail.com", "333333");
-const yana = new Student("Yana", "07", "yyy@mail.com", "44444");
-const zoe = new Student("Zoe", "06", "zzzz@mail.com", "222222");
-const badr = new Student("Badr", "07", "BBB@mail.com", "555555");
-const swapna = new Student("Swapna", "09", "ssss@mail.com", "66666");
-const sana = new Student("Sana", "08", "sna@mail.com", "999999");
-const sharmila = new Student("Sharmila", "07", "Sharmila@mail.com", "111111");
-const adil = new Student("Adil", "08", "AAA@mail.com", "8888888");
-
-//adding student details to HYFDataBase
-HYFStudents.addStudentDetails(keerthi);
-HYFStudents.addStudentDetails(badr);
-HYFStudents.addStudentDetails(kseina);
-HYFStudents.addStudentDetails(yana);
-HYFStudents.addStudentDetails(zoe);
-HYFStudents.addStudentDetails(swapna);
-HYFStudents.addStudentDetails(sana);
-HYFStudents.addStudentDetails(sharmila);
-HYFStudents.addStudentDetails(adil);
+HYFStudents.addStudentDetails({
+  name: "Keerthi",
+  classId: "08",
+  email: "kkk@mail.com",
+  phone: "7777777"
+});
+HYFStudents.addStudentDetails({
+  name: "Kseina",
+  classId: "08",
+  email: "ksss@mail.com",
+  phone: "333333"
+});
+HYFStudents.addStudentDetails({
+  name: "Zoe",
+  classId: "06",
+  email: "zzzz@mail.com",
+  phone: "222222"
+});
+HYFStudents.addStudentDetails({
+  name: "Yana",
+  classId: "07",
+  email: "yyy@mail.com",
+  phone: "44444"
+});
 
 //logout Array of studentsDetails
 console.log("Here are some HYF-Students Details");
 console.log(HYFStudents);
 
+HYFStudents.addStudentDetails({
+  name: "Keerthi",
+  classId: "08",
+  email: "kkk@mail.com",
+  phone: "7777777"
+});
+
 //Getting list of all HYF-students
-console.log("List of HYF students");
-HYFStudents.getStudentsList();
+/* console.log("List of HYF students");
+HYFStudents.getStudentsList(); */
 
 //getting  studentsList by classId
 console.log("students from class 07");
@@ -122,3 +143,5 @@ HYFStudents.editStudentInfo({
 
 //print students after editing
 console.log(HYFStudents);
+
+
