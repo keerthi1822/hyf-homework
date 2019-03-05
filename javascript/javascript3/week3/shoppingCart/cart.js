@@ -50,15 +50,7 @@ class Product {
 
 }
 
-
-  
-  for(let elem of document.querySelectorAll('.display button')) {
-  elem.addEventListener("click", event => {
-    shoppingCart.addProduct("elem");
-  });
-}
-
-
+ 
 class ShoppingCart {
   constructor(products) {
     this.products = products;

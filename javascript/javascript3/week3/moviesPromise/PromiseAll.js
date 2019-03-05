@@ -1,19 +1,7 @@
-//Mapping array of fetch object to find owner, fullname, repository urls
-function mapItems(dataItems) {
-  dataItems.map(dataitem => {
-    console.log(dataitem.full_name);
-    console.log(dataitem.owner.login);
-    console.log(dataitem.owner.repos_url);
-    renderList(
-      dataitem.owner.login,
-      dataitem.full_name,
-      dataitem.owner.repos_url
-    );
-  });
-}
 //rendering data to html using DOM
 function renderList(owner, fullname, repourl) {
   const uList = document.querySelector("ul");
+
   const liElement = document.createElement("li");
   liElement.innerHTML = owner;
 
@@ -24,38 +12,37 @@ function renderList(owner, fullname, repourl) {
 
   const liRepo = document.createElement("li");
   liRepo.innerHTML = repourl;
-
   uListChild.appendChild(liRepo);
 
   liElement.appendChild(uListChild);
   uList.appendChild(liElement);
 }
 //returning 3 promises p1,p2,p3
-let p1 = fetch("https://api.github.com/search/repositories?q=user:SQasemi")
-  .then(response => response.json())
-  .then(data => {
-    // console.log(data);
-    //  console.log(data.items);
-    //  console.log(data.items[0].owner.repos_url);
-    mapItems(data.items);
-  });
-
-let p2 = fetch("https://api.github.com/search/repositories?q=user:kseniiazar ")
-  .then(response => response.json())
-  .then(data => {
-    // console.log(data);
-    // console.log(data.items);
-    mapItems(data.items);
-  });
-
-let p3 = fetch(
+const repositoriesUrls = [
+  "https://api.github.com/search/repositories?q=user:SQasemi",
+  "https://api.github.com/search/repositories?q=user:kseniiazar ",
   "https://api.github.com/search/repositories?q=user:humayunadilshahzad"
-)
-  .then(response => response.json())
-  .then(data => {
-    // console.log(data);
-    // console.log(data.items);
-    mapItems(data.items);
-  });
+];
+console.log(repositoriesUrls);
+
+const promises = repositoriesUrls.map(repository => fetch(repository));
+console.log(promises);
+
+Promise.all(promises)
+  .then(responses => {
+    const promisesJsons = responses.map(response => response.json());
+    console.log(promisesJsons);
+    return Promise.all(promisesJsons);
+  })
+  .then(repositories=>{
+    console.log(repositories);
+  })
+
 //using Promise All
-Promise.all([p1, p2, p3]);
+/* Promise.all([p1, p2, p3])
+.then(repoInfo => {
+  console.log(repoInfo);
+  //console.log(typeof repoInfo);
+  }) */
+
+//Mapping array of fetch object to find owner, fullname, repository urls
