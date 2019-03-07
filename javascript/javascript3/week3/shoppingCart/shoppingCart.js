@@ -1,22 +1,16 @@
-// const availableProducts = [
-//   "Washing Machine",
-//   "Fridge",
-//   "Vaccum cleaner",
-//   "Television",
-//   "Micro wave",
-//   "Oven",
-//   "Lamp",
-//   "Bike",
-//   "Vase",
-//   "Blender",
-//   "Kommode",
-//   "Grill"
-// ];
-
 class Product {
   constructor(name, price) {
     this.name = name;
     this.price = price;
+  }
+  getPrice(currency) {
+    fetch(
+      "https://free.currencyconverterapi.com/api/v6/convert?q=USD_PHP&compact=ultra&apiKey=b7be47292a77ada60a66"
+    )
+      .then(response => response.json())
+      .then(convertionValue => {
+        const priceUSD_PHP = this.price * convertionValue;
+      });
   }
 }
 
@@ -26,74 +20,93 @@ class ShoppingCart {
   }
 
   addProduct(product) {
-      
-    this.products.push(product);
-    console.log(product);
     // Implement functionality here
+
+    this.products.push(product);
+
+    console.log("product added");
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
   }
 
   removeProduct(product) {
-    this.productsAfterFilter = this.products.filter(function(productToRemove) {
-      return product !== productToRemove;
-    });
-    console.log(this.productsAfterFilter);
     // Implement functionality here
+    this.products = this.products.filter(eachProduct => {
+      return product.name !== eachProduct.name;
+    });
+    console.log("product removed");
   }
 
   getTotal() {
     // Implement functionality here
-  }
-
-  renderProducts(productName) {
-    // Implement functionality here
-
-    const uList = document.querySelector("section > ul");
-
-    const list = document.createElement("li");
-    const divElement = document.createElement("div");
-    const inputElement = document.createElement("input");
-    inputElement.setAttribute("type", "checkbox");
-    const divProductName = document.createElement("div");
-    // const divProductPrice = document.createElement("div");
-    divProductName.innerHTML = productName;
-    console.log( divProductName.innerHTML);
-    //divProductPrice.innerHTML = price;
-    inputElement.appendChild(divProductName);
-    divElement.appendChild(inputElement);
-    list.appendChild(divElement);
-    uList.appendChild(list);
+    //console.log()
+    const totalPrice = this.products.reduce(
+      (accumulator, productPrice) => accumulator + productPrice.price,
+      0
+    );
+    console.log(totalPrice);
+    return totalPrice;
   }
 
   getUser() {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(user => {
-        console.log(user.username);
-        console.log(user.name);
-      });
     // Implement functionality here
+    const promise = fetch("https://jsonplaceholder.typicode.com/users/1").then(
+      response => response.json()
+    );
+    return promise;
+  }
+
+  renderProducts(username) {
+    //render user
+    const user = document.querySelector("#user");
+    user.innerHTML = username;
+
+    // foreach to product each product
+    this.products.forEach(product => {
+      const ul = document.querySelector(".cart ul");
+
+      //creating li list of shopping cart
+      const li = document.createElement("li");
+      li.innerHTML = product.name + " --- " + product.price + "USD";
+      ul.appendChild(li);
+    });
+
+    //render total price
+    const divForTotalPrice = document.querySelector("#totalPrice");
+
+    const pTagForTotalPrice = document.createElement("p");
+    pTagForTotalPrice.innerHTML = "Total Price:" + this.getTotal() + "USD";
+
+    divForTotalPrice.appendChild(pTagForTotalPrice);
   }
 }
 
+const flatscreen = new Product("flat-screen", 500);
+const speakers = new Product("speakers", 100);
+const headphones = new Product("Head-Phones", 50);
+const shoppingCart = new ShoppingCart([flatscreen, headphones]);
 
-//creating instance of class shopping cart
-const productsInCart = new ShoppingCart([]);
-// productsInCart.renderProducts("toys");
-// productsInCart.renderProducts("PC");
-//adding event listener to checkbox
-document.querySelector(".cart ul li  input > div").addEventListener("change", function() {
-  const selectedProduct = document.querySelector(".inline input>div");
-  productsInCart.renderProducts(selectedProduct.innerHTML);
-  productsInCart.addProduct(selectedProduct.innerHTML);
+shoppingCart.addProduct(speakers);
+console.log(shoppingCart);
+
+//uncomment to remove product
+
+/* shoppingCart.removeProduct(flatscreen);
+console.log(shoppingCart); */
+
+shoppingCart
+  .getUser()
+  .then(user => user.name)
+  .then(username => {
+    shoppingCart.renderProducts(username);
+  });
+
+  //convert currency when clicked button
+/* const button = document.querySelector("button");
+button.addEventListener("click", () => {
+   const convertedPrice = new Product().getPrice('PHP');
+   const p = document.querySelector('#convertedPrice');
+   p.innerHTML = convertedPrice +'PHP'
 });
-
-//productsInCart.getUser();
-
-
-
-
-//const product1 = new Product("Bell", 56);
-// const product2 = new Product("Speaker", 5);
-// const product3 = new Product("Speaker2", 562);
-// const product4 = new Product("Speaker3", 98);
-// const product5 = new Product("Speaker4", 40);
+ */
