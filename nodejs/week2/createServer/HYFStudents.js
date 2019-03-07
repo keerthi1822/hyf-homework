@@ -13,11 +13,15 @@ class HYFDataBase {
         student.classId === studentDetails.classId
       );
     });
-    //console.log(checkDuplicate);
-    if (checkDuplicate == 0) {
-      this.studentsList.push(studentDetails);
+    console.log(checkDuplicate);
+    if (checkDuplicate.length == 0) {
+      console.log("no duplicate exist")
+     this.studentsList.push(studentDetails);
+     //console.log(this.studentsList)
+     return "student added";
     } else {
       console.log(studentDetails.name + " already exist");
+      return "student already exist";
     }
     }
   
