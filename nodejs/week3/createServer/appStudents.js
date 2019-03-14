@@ -69,48 +69,57 @@ let server = http.createServer(function(req, res) {
   console.log("send response to client..");
 
   if (url == "/getStudentsList") {
-    console.log(HYFDataBase.getStudentsList());
-    res.end(JSON.stringify(HYFDataBase.getStudentsList()));
-  } else if (url === "/addStudentDetails" && req.method == "POST") {
+    const statusOfAction = HYFDataBase.getStudentsList();
+    //checking status (getStudentsList function returned)
+    checkStatus(statusOfAction, url);
+  } else if (url == "/addStudentDetails" && req.method == "POST") {
     //res.end("request type:" + req.method);
 
-    const status = HYFDataBase.addStudentDetails({
+    const statusOfAction = HYFDataBase.addStudentDetails({
       name: "Pragathi",
       classId: 07,
       email: "kkkk@mail.com",
       phone: 1234
     });
-    // setting status code to method if request is successful or failure
+    //invoking checkStatus function to check status
+    checkStatus(statusOfAction, url);
+  } else if (url == "/getListByClass" && req.method == "GET") {
+    const statusOfAction = HYFDataBase.getListByClass("");
+    //checking status (getListByClass function returned)
+    checkStatus(statusOfAction, url);
+  } else if (url == "/getStudentDetailByName" && req.method == "GET") {
+    const statusOfAction = HYFDataBase.getStudentDetailByName("Hakki");
+    //checking status (getStudentDetailByName function returned)
+    checkStatus(statusOfAction, url);
+  } else if (url == "/editStudentInfo" && req.method == "PUT") {
+    const statusOfAction = HYFDataBase.editStudentInfo({
+      name: "Keerthika devi Alampalli",
+      classId: 07,
+      email: "adahbour54@gmail.com",
+      phone: "(745) 285-6338"
+    });
+    checkStatus(statusOfAction, url);
+  } else if (url == "/deleteStudentFromHYF" && req.method == "DELETE") {
+    //console.log(req.method);
+    const statusOfAction = HYFDataBase.deleteStudentFromHYF("Virgeen");
+    //checking status (deleteStudentFromHYF function returned)
+    checkStatus(statusOfAction, url);
+  } else {
+    res.end("You r in homepage");
+  }
+  function checkStatus(status, url) {
     if (status) {
+      //check status code
       res.statusCode = 201;
-      res.end("student added successfully");
+      res.end("student " + url+" "+status + "done");
     } else {
       res.statusCode = 400;
-      res.end("failed:student already exist");
+      res.end("student " + url + " failure");
     }
-  } else if (url == "/getListByClass" && req.method == "GET") {
-    res.end(JSON.stringify(HYFDataBase.getListByClass(07)));
-  } else if (url == "/getStudentDetailByName" && req.method == "GET") {
-    res.end(JSON.stringify(HYFDataBase.getStudentDetailByName("Hakki")));
-  } else if (url == "/editStudentInfo" && req.method == "PUT") {
-    res.end(
-      JSON.stringify(
-        HYFDataBase.editStudentInfo({
-          name: "Keerthika devi Alampalli",
-          classId: 07,
-          email: "adahbour54@gmail.com",
-          phone: "(745) 285-6338"
-        })
-      )
-    );
-  } else if (url == "/deleteStudentFromHYF" && req.method == "DELETE") {
-    console.log(req.method);
-    res.end(JSON.stringify(HYFDataBase.deleteStudentFromHYF("Virgeen")));
-  } else {
-    res.end("not found(in else)");
   }
 });
+
 //server.use(body_parser);
-server.listen(7777, function() {
-  console.log("port:7777");
+server.listen(7337, function() {
+  console.log("port:7337");
 });

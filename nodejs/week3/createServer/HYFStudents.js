@@ -16,7 +16,7 @@ class HYFDataBase {
     if (checkDuplicate.length == 0) {
       //console.log("no duplicate exist")
       this.studentsList.push(studentDetails);
-      //console.log(this.studentsList)
+      console.log(this.studentsList)
       return true;
     } else {
       //console.log(studentDetails.name + " already exist");
@@ -29,55 +29,63 @@ class HYFDataBase {
     const studentsList = this.studentsList.map(student => {
       return { Name: student.name, email: student.email };
     });
-    return studentsList;
+    return true;
     // console.log(studentsList);
   }
 
   //method to get student using classId
   getListByClass(classid) {
-    const classList = this.studentsList.filter(student => {
-      return student.classId == classid;
-    });
-    return classList;
+    if (classid != "") {
+      console.log(classid);
+      const classList = this.studentsList.filter(student => {
+        return student.classId == classid;
+      });
+      return true;
+    } else {
+      return false;
+    }
     //console.log(classList);
   }
 
   //method to get student using name
   getStudentDetailByName(name) {
-    const detailsForSpecificStudent = this.studentsList.filter(student => {
-      return student.name == name;
-    });
-    return detailsForSpecificStudent;
-    //   if (detailsForSpecificStudent.length === 0) {
-    //     console.log("No such student present");
-    //   } else {
-    //     console.log(detailsForSpecificStudent);
-    //   }
+    if (name != "") {
+      const detailsForSpecificStudent = this.studentsList.filter(student => {
+        return student.name == name;
+      });
+      return true;
+    } else {
+      return false;
+    }
   }
 
   //method to edit student details through name
   editStudentInfo(studentInfo) {
-    this.studentsList.forEach(student => {
-      if (student.name === studentInfo.name) {
-        //   console.log(index);
-        this.student = studentInfo;
-        //   console.log(this.studentsList[index]);
-      }
-    });
-    return this.student;
+    if (studentInfo != "") {
+      this.studentsList.forEach(student => {
+        if (student.name === studentInfo.name) {
+          //   console.log(index);
+          this.student = studentInfo;
+          //   console.log(this.studentsList[index]);
+        }
+      });
+      return true;
+    } else {
+      return false;
+    }
   }
   deleteStudentFromHYF(studentName) {
     const checkStudentExist = this.studentsList.filter(student => {
-      return (studentName === student.name);
+      return studentName === student.name;
     });
     console.log(checkStudentExist);
     if (checkStudentExist.length !== 0) {
-        this.studentsList = this.studentsList.filter((student)=>{
-          return (studentName !== student.name)
-        });
-        return "student deleted"
-    } else{
-      return "student not exist"
+      this.studentsList = this.studentsList.filter(student => {
+        return studentName !== student.name;
+      });
+      return true;
+    } else {
+      return false;
     }
   }
 }
