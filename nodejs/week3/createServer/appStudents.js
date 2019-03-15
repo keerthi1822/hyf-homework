@@ -71,7 +71,14 @@ let server = http.createServer(function(req, res) {
   if (url == "/getStudentsList") {
     const statusOfAction = HYFDataBase.getStudentsList();
     //checking status (getStudentsList function returned)
-    checkStatus(statusOfAction, url);
+    if (statusOfAction) {
+      //check status code
+      res.statusCode = 201;
+      res.end("student " + url+" "+status + "done");
+    } else {
+      res.statusCode = 400;
+      res.end("student " + url + " failure");
+    }
   } else if (url == "/addStudentDetails" && req.method == "POST") {
     //res.end("request type:" + req.method);
 
@@ -82,15 +89,36 @@ let server = http.createServer(function(req, res) {
       phone: 1234
     });
     //invoking checkStatus function to check status
-    checkStatus(statusOfAction, url);
+    if (statusOfAction) {
+      //check status code
+      res.statusCode = 201;
+      res.end("student added");
+    } else {
+      res.statusCode = 400;
+      res.end("student already exist");
+    }
   } else if (url == "/getListByClass" && req.method == "GET") {
-    const statusOfAction = HYFDataBase.getListByClass("");
+    const statusOfAction = HYFDataBase.getListByClass();
     //checking status (getListByClass function returned)
-    checkStatus(statusOfAction, url);
+    if (statusOfAction) {
+      //check status code
+      res.statusCode = 201;
+      res.end("Class list found");
+    } else {
+      res.statusCode = 400;
+      res.end("class list not found");
+    }
   } else if (url == "/getStudentDetailByName" && req.method == "GET") {
     const statusOfAction = HYFDataBase.getStudentDetailByName("Hakki");
     //checking status (getStudentDetailByName function returned)
-    checkStatus(statusOfAction, url);
+    if (statusOfAction) {
+      //check status code
+      res.statusCode = 201;
+      res.end("student details found ");
+    } else {
+      res.statusCode = 400;
+      res.end("student not found");
+    }
   } else if (url == "/editStudentInfo" && req.method == "PUT") {
     const statusOfAction = HYFDataBase.editStudentInfo({
       name: "Keerthika devi Alampalli",
@@ -98,24 +126,28 @@ let server = http.createServer(function(req, res) {
       email: "adahbour54@gmail.com",
       phone: "(745) 285-6338"
     });
-    checkStatus(statusOfAction, url);
+    if (statusOfAction) {
+      //check status code
+      res.statusCode = 204;
+      res.end("student Details modified");
+    } else {
+      res.statusCode = 400;
+      res.end("failure!...student not found");
+    }
   } else if (url == "/deleteStudentFromHYF" && req.method == "DELETE") {
     //console.log(req.method);
     const statusOfAction = HYFDataBase.deleteStudentFromHYF("Virgeen");
     //checking status (deleteStudentFromHYF function returned)
-    checkStatus(statusOfAction, url);
-  } else {
-    res.end("You r in homepage");
-  }
-  function checkStatus(status, url) {
-    if (status) {
+    if (statusOfAction) {
       //check status code
-      res.statusCode = 201;
-      res.end("student " + url+" "+status + "done");
+      res.statusCode = 204;
+      res.end("student deleted");
     } else {
       res.statusCode = 400;
-      res.end("student " + url + " failure");
+      res.end("Failure! student not found");
     }
+  } else {
+    res.end("You r in homepage localhost:7337");
   }
 });
 

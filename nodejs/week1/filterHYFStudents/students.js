@@ -1,23 +1,11 @@
-//creating class for student information
-class Student {
-    constructor(name, classId, email, phone) {
-      this.name = name;
-      this.classId = classId;
-      this.email = email;
-      this.phone = phone;
-    }
 
-   /*  sendEmail() {
-        
-    }
- */
-  }
   
   //creating class for HYFDatabase
   class HYFDataBase {
-    constructor(studentsDetails) {
-      this.studentsList = studentsDetails;
-    }
+    constructor(...HYFStudents) {
+      this.studentsList = HYFStudents
+     }
+    
   
     //method to add students and their details
     addStudentDetails(studentDetails) {
@@ -38,7 +26,7 @@ class Student {
     //method to get students list
     getStudentsList() {
       const studentsList = this.studentsList.map(student => {
-        return { Name: student.name, classid: student.classId };
+        return { Name: student.name, email: student.email };
       });
       console.log(studentsList);
     }
@@ -66,9 +54,10 @@ class Student {
     //method to edit student details through name
     editStudentInfo(studentInfo) {
       this.studentsList.forEach((student, index) => {
-        if (student.name === studentInfo.name) {
+        if (student.name === studentInfo.name ) {
           console.log(index);
           this.studentsList[index] = studentInfo;
+          console.log(this.studentsList[index]);
         }
       });
     }
@@ -77,27 +66,20 @@ class Student {
   //creating instance of class 'HYFDataBase'
  
   //creating instances for class Student
-  const keerthi = new Student("Keerthi", "08", "kkk@mail.com", "7777777");
-  const kseina = new Student("Kseina", "08", "ksss@mail.com", "333333");
-  const yana = new Student("Yana", "07", "yyy@mail.com", "44444");
-  const zoe = new Student("Zoe", "06", "zzzz@mail.com", "222222");
-  const badr = new Student("Badr", "07", "BBB@mail.com", "555555");
-  const swapna = new Student("Swapna", "09", "ssss@mail.com", "66666");
-  const sana = new Student("Sana", "08", "sna@mail.com", "999999");
-  const sharmila = new Student("Sharmila", "07", "Sharmila@mail.com", "111111");
-  const adil = new Student("Adil", "08", "AAA@mail.com", "8888888");
-  const HYFStudents = new HYFDataBase([keerthi]);
+ 
+  const HYFStudents = new HYFDataBase( {   "name": "Hakki",   "classId": 07,   "email": "adahbour54@gmail.com",   "phone": "(263) 972-6043" },
+  {   "name": "Keerthika devi Alampalli",   "classId": 08,   "email": "adahbour54@gmail.com",   "phone": "(745) 285-6338" },
+  {   "name": "Rieko",   "classId": 07,   "email": "adahbour54@gmail.com",   "phone": "(971) 436-6442" },
+  {   "name": "Sheila Qasemi",   "classId": 08,   "email": "virginrashed4@gmail.com",   "phone": "(457) 527-9154" },
+  {   "name": "Virgeen",   "classId": 07,   "email": "virginrashed4@gmail.com",   "phone": "(259) 245-5777" },
+  {   "name": "Abod",   "classId": 07,   "email": "a-hassam@outlook.com",   "phone": "(939) 553-4886" },
+  {   "name": "Ivan Gray",   "classId": 06,   "email": "mis@sazuja.pm",   "phone": "(548) 420-7322" },
+  {   "name": "Gordon Fields",   "classId": 08,   "email": "wogzijpeg@jusvijsut.lb",   "phone": "(970) 482-1032" },
+  {   "name": "Mitchell Byrd",   "classId": 09,   "email": "mucipok@dul.dz",   "phone": "(480) 835-5405" },
+  {   "name": "Agnes Barton",   "classId": 07,   "email": "udirulu@kimvuzev.mp",   "phone": "(781) 210-4210" }
+);
   
-  //adding student details to HYFDataBase
- // HYFStudents.addStudentDetails(keerthi);
-  HYFStudents.addStudentDetails(badr);
-  HYFStudents.addStudentDetails(kseina);
-  HYFStudents.addStudentDetails(yana);
-  HYFStudents.addStudentDetails(zoe);
-  HYFStudents.addStudentDetails(swapna);
-  HYFStudents.addStudentDetails(sana);
-  HYFStudents.addStudentDetails(sharmila);
-  HYFStudents.addStudentDetails(adil);
+
   
   //logout Array of studentsDetails
   console.log("Here are some HYF-Students Details");
@@ -110,31 +92,45 @@ class Student {
   //getting  studentsList by classId
   console.log("students from class 07");
   HYFStudents.getListByClass("07");
-  console.log("students from class 08");
-  HYFStudents.getListByClass("08");
-  console.log("students from class 09");
-  HYFStudents.getListByClass("09");
-  console.log("students from class 06");
-  HYFStudents.getListByClass("06");
+ 
   
   //getting students by name
   HYFStudents.getStudentDetailByName("Sana");
-  HYFStudents.getStudentDetailByName("Ss");
+  HYFStudents.getStudentDetailByName("Sheila Qasemi");
   
   //edit student details
   console.log("editted student info");
-  HYFStudents.editStudentInfo({
-    name: "Keerthi",
-    classId: "07",
-    email: "kk@mail.com",
-    phone: "7777777"
-  });
-  HYFStudents.editStudentInfo({
-    name: "Zoe",
-    classId: "07",
-    email: "zzzz@mail.com",
-    phone: "222222"
-  });
+  HYFStudents.editStudentInfo( { name: 'Hakki',
+  classId: 8,
+  email: 'adahbour4@gmail.com',
+  phone: '(263) 972-6043' });
+  
   
   //print students after editing
-  console.log(HYFStudents);
+  //console.log(HYFStudents);
+
+
+
+
+
+
+  // const keerthi = new Student("Keerthi", "08", "kkk@mail.com", "7777777");
+  // const kseina = new Student("Kseina", "08", "ksss@mail.com", "333333");
+  // const yana = new Student("Yana", "07", "yyy@mail.com", "44444");
+  // const zoe = new Student("Zoe", "06", "zzzz@mail.com", "222222");
+  // const badr = new Student("Badr", "07", "BBB@mail.com", "555555");
+  // const swapna = new Student("Swapna", "09", "ssss@mail.com", "66666");
+  // const sana = new Student("Sana", "08", "sna@mail.com", "999999");
+  // const sharmila = new Student("Sharmila", "07", "Sharmila@mail.com", "111111");
+  // const adil = new Student("Adil", "08", "AAA@mail.com", "8888888");
+
+    //adding student details to HYFDataBase
+ // HYFStudents.addStudentDetails(keerthi);
+  // HYFStudents.addStudentDetails(badr);
+  // HYFStudents.addStudentDetails(kseina);
+  // HYFStudents.addStudentDetails(yana);
+  // HYFStudents.addStudentDetails(zoe);
+  // HYFStudents.addStudentDetails(swapna);
+  // HYFStudents.addStudentDetails(sana);
+  // HYFStudents.addStudentDetails(sharmila);
+  // HYFStudents.addStudentDetails(adil);

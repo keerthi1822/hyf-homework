@@ -16,7 +16,7 @@ class HYFDataBase {
     if (checkDuplicate.length == 0) {
       //console.log("no duplicate exist")
       this.studentsList.push(studentDetails);
-      console.log(this.studentsList)
+      console.log(this.studentsList);
       return true;
     } else {
       //console.log(studentDetails.name + " already exist");
@@ -40,9 +40,13 @@ class HYFDataBase {
       const classList = this.studentsList.filter(student => {
         return student.classId == classid;
       });
-      return true;
+      if (classList.length != 0) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return false;
+      return "false";
     }
     //console.log(classList);
   }
@@ -50,12 +54,16 @@ class HYFDataBase {
   //method to get student using name
   getStudentDetailByName(name) {
     if (name != "") {
-      const detailsForSpecificStudent = this.studentsList.filter(student => {
+      let detailsForSpecificStudent = this.studentsList.filter(student => {
         return student.name == name;
       });
-      return true;
+      if (detailsForSpecificStudent.length != 0) {
+        return true;
+      } else {
+        return false;
+      }
     } else {
-      return false;
+      return "false";
     }
   }
 
@@ -64,9 +72,7 @@ class HYFDataBase {
     if (studentInfo != "") {
       this.studentsList.forEach(student => {
         if (student.name === studentInfo.name) {
-          //   console.log(index);
           this.student = studentInfo;
-          //   console.log(this.studentsList[index]);
         }
       });
       return true;
