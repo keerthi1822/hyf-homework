@@ -88,7 +88,7 @@ let server = http.createServer(function(req, res) {
       email: "kkkk@mail.com",
       phone: 1234
     });
-    //invoking checkStatus function to check status
+    // checkStatus
     if (statusOfAction) {
       //check status code
       res.statusCode = 201;
