@@ -75,14 +75,16 @@ app.get("/", (req, res) => res.send("API for HYF"));
 router
   .route("/students")
   .get((req, res) => {
-    //console.log( req.query.name);
-
+    //most important
+    //***make content type as aplication/json in both the bodys to accept json files(in postman )***
+    //select raw data (postman)
     if (req.query.name) {
       const student = HYFDataBase.getStudentDetailByName(req.query.name);
       if (student.length > 0) {
         res.send(student);
       } else {
         res.status(404);
+        res.send('student not exist');
       }
     } else if (req.query.classId) {
       const studentsWithClassId = HYFDataBase.getListByClass(req.query.classId);
@@ -90,14 +92,17 @@ router
         res.send(studentsWithClassId);
       } else {
         res.status(404);
+        res.send('student not exist');
       }
     } else {
       res.send(HYFDataBase.getStudentsList());
-    }
+    } 
   })
 
   .post((req, res) => {
-    //console.log(req.body);
+    //most important
+    //***make content type as aplication/json in both the bodys to accept json files(in postman )***
+    //select raw data (postman)
     HYFDataBase.addStudent(req.body, (sucessCallback, errcallBack) => {
       if (sucessCallback) {
         res.status(201);
@@ -112,29 +117,37 @@ router
     });
   })
 
-  .put(  ( req, res )=> {
-    if(HYFDataBase.getStudentDetailByName(req.body.name)!== ""){
-    HYFDataBase.editStudentInfo(req.body);
-    res.send(HYFDataBase.getStudentsList());
-     
-      res.status(200);
-    }
-    else{
-       res.status(404) ;
-       res.send("student not exist")
-    }
-    //if (!req.body) return res.sendStatus(400);    
-    //res.send( req.body );
-})
-     //res.send("in put");
+  .put((req, res) => {
+    //most important
+    //***make content type as aplication/json in both the bodys to accept json files(in postman )***
+    
+    if (HYFDataBase.getStudentDetailByName(req.body.name).length !== 0) {
+      //console.log(HYFDataBase.getStudentDetailByName(req.body.name));
+      HYFDataBase.editStudentInfo(req.body);
+      res.send(HYFDataBase.getStudentsList());
 
-  
-    
-   
-    
+      res.status(200);
+    } else {
+      res.status(404);
+      res.send("student not exist");
+    }
+    //if (!req.body) return res.sendStatus(400);
+    //res.send( req.body );
+  })
+  //res.send("in put");
 
   .delete((req, res) => {
-    res.send("in delete");
+    //most important
+    //***make content type as aplication/json in both the bodys to accept json files(in postman )***
+    if (HYFDataBase.getStudentDetailByName(req.body.name).length !== 0) {
+     
+      HYFDataBase.deleteStudentFromHYF(req.body.name);
+      res.send(HYFDataBase.getStudentsList());
+      res.status(200);
+    } else {
+      res.status(404);
+      res.send("student not exist");
+    }
   });
 
 app.listen(port, () => console.log(`HYF app listening to ${port}!`));

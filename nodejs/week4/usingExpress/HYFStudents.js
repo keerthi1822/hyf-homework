@@ -71,25 +71,23 @@ class HYFDataBase {
 
   //method to edit student details through name
   editStudentInfo(studentInfo) {
-    let studentToEdit = this.studentsList.filter(
-      student => student.name == studentInfo.name
-    );
-    studentToEdit = studentInfo;
-    console.log(studentToEdit)
-    return studentToEdit;
+    /*  let studentToEdit = this.studentsList.filter((student,index) => {
+      return student.name == studentInfo.name;
+    });
+    studentToEdit = studentInfo; */
+    this.studentsList = this.studentsList.filter(student => {
+      return student.name !== studentInfo.name;
+    });
+
+    this.studentsList.push(studentInfo);
+    return this.studentsList;
   }
 
   deleteStudentFromHYF(studentName) {
-    const checkStudentExist = this.studentsList.filter(student => {
-      return studentName === student.name;
+    this.studentsList = this.studentsList.filter(student => {
+      return studentName !== student.name;
     });
-    //console.log(checkStudentExist);
-    if (checkStudentExist.length !== 0) {
-      this.studentsList = this.studentsList.filter(student => {
-        return studentName !== student.name;
-      });
-      return this.studentsList;
-    }
+    return this.studentsList;
   }
 }
 
