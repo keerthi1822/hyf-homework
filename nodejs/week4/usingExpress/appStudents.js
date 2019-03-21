@@ -3,11 +3,6 @@ const express = require("express");
 const body_parser = require("body-parser");
 const router = express.Router();
 let StudentBook = require("./HYFStudents");
-const app = express();
-const port = 7777;
-
-app.use(body_parser.json());
-app.use(router);
 
 let HYFDataBase = new StudentBook([
   {
@@ -60,6 +55,15 @@ let HYFDataBase = new StudentBook([
   }
   
 ]);
+const app = express();
+const port = 7777;
+
+app.use(body_parser.json());
+app.use(router);
+
+
+
+
 
 //these 2 lines not needed now may be useful in future
 app.use(body_parser.urlencoded({
@@ -72,7 +76,8 @@ app.get("/", (req, res) => res.send("API for HYF"));
 router
   .route("/students")
   .get((req, res) => {
-    console.log( req);
+    console.log( req.query.name);
+
     if (req.query.name) {
       const student = HYFDataBase.getStudentDetailByName(req.query.name);
       if (student.length > 0) {

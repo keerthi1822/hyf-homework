@@ -78,12 +78,10 @@ class HYFDataBase {
   //method to edit student details through name
   editStudentInfo(studentInfo) {
     let studentToEdit = this.studentsList.filter(
-      student => student.name === studentInfo.name
+      student => student.name == studentInfo.name
     );
-    let StudentEditted = studentToEdit.map(student => {
-      return student = studentInfo;
-    });
-    return StudentEditted;
+    studentToEdit = studentInfo;
+    return studentToEdit;
   }
 
   deleteStudentFromHYF(studentName) {
