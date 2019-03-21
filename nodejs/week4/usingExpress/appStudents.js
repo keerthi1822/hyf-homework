@@ -84,7 +84,7 @@ router
         res.send(student);
       } else {
         res.status(404);
-        res.send('student not exist');
+        res.send("student not exist");
       }
     } else if (req.query.classId) {
       const studentsWithClassId = HYFDataBase.getListByClass(req.query.classId);
@@ -92,11 +92,11 @@ router
         res.send(studentsWithClassId);
       } else {
         res.status(404);
-        res.send('student not exist');
+        res.send("student not exist");
       }
     } else {
       res.send(HYFDataBase.getStudentsList());
-    } 
+    }
   })
 
   .post((req, res) => {
@@ -120,7 +120,7 @@ router
   .put((req, res) => {
     //most important
     //***make content type as aplication/json in both the bodys to accept json files(in postman )***
-    
+
     if (HYFDataBase.getStudentDetailByName(req.body.name).length !== 0) {
       //console.log(HYFDataBase.getStudentDetailByName(req.body.name));
       HYFDataBase.editStudentInfo(req.body);
@@ -140,7 +140,6 @@ router
     //most important
     //***make content type as aplication/json in both the bodys to accept json files(in postman )***
     if (HYFDataBase.getStudentDetailByName(req.body.name).length !== 0) {
-     
       HYFDataBase.deleteStudentFromHYF(req.body.name);
       res.send(HYFDataBase.getStudentsList());
       res.status(200);
