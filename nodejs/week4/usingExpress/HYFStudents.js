@@ -29,6 +29,10 @@ class HYFDataBase {
     }
   }
 
+  /*  elseif(result.length == 1 && result != newStudent){
+        
+} */
+
   //method to add students and their details
   addStudent(studentDetails, callback) {
     let successful;
@@ -51,20 +55,10 @@ class HYFDataBase {
 
   //method to get student using classId
   getListByClass(classid) {
-    if (classid == "") {
-      //console.log(classid);
-      const classList = this.studentsList.filter(student => {
-        return student.classId == classid;
-      });
-      if (classList.length != 0) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return "false";
-    }
-    //console.log(classList);
+    const classList = this.studentsList.filter(student => {
+      return student.classId == classid;
+    });
+    return classList;
   }
 
   //method to get student using name
@@ -81,6 +75,7 @@ class HYFDataBase {
       student => student.name == studentInfo.name
     );
     studentToEdit = studentInfo;
+    console.log(studentToEdit)
     return studentToEdit;
   }
 
