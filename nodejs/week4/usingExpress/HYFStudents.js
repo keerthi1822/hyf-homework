@@ -33,13 +33,13 @@ class HYFDataBase {
             " name classid phone and email values should not be empty"
           );
         }
-         else if(result.length == 1 && string == 'add') {
+        } else if(result.length == 1 && string == 'add') {
           //if result is > 0 then throw new error which catches the error (error has error message"student already exist")
           //in this program we call callback function with err.message which displays error message
           throw new Error("student already exist");
-        }else if(result.length ==0 && string == 'edit'){
+        } else if(result.length ==0 && string == 'edit'){
           throw new Error('student not exist');
-        }else {
+        } else {
           //if any property is missing while posting student details then it throws this error and msg
           throw new Error("Student should have name classid phone and email");
         }
