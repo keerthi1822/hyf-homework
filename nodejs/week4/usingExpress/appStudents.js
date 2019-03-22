@@ -79,6 +79,9 @@ router
     //***make content type as aplication/json in both the bodys to accept json files(in postman )***
     //select raw data (postman)
     if (req.query.name) {
+      if(req.query.name.length <=3){
+        res.send('name too short');
+      }
       const student = HYFDataBase.getStudentDetailByName(req.query.name);
       if (student.length > 0) {
         res.send(student);

@@ -13,7 +13,7 @@ class HYFDataBase {
       newStudent.hasOwnProperty("phone")
     ) {
       const result = this.getStudentDetailByName(newStudent.name);
-      console.log(result);
+      //console.log(result);
       //checking for duplicate result.length == 0 meanns no duplicate available here . So we simply 'return'
       //to calling function that means  true and continue in try block
       if (
@@ -26,26 +26,28 @@ class HYFDataBase {
           newStudent.email !== "" &&
           newStudent.phone !== ""
         ) {
-          console.log(this.studentsList);
+          //console.log(this.studentsList);
           return;
-        }else{
+        } else {
           throw new Error(
             " name classid phone and email values should not be empty"
           );
         }
-        } else if(result.length == 1 && string == 'add') {
-          //if result is > 0 then throw new error which catches the error (error has error message"student already exist")
-          //in this program we call callback function with err.message which displays error message
-          throw new Error("student already exist");
-        } else if(result.length ==0 && string == 'edit'){
-          throw new Error('student not exist');
-        } else {
-          //if any property is missing while posting student details then it throws this error and msg
-          throw new Error("Student should have name classid phone and email");
-        }
       }
+      if (result.length == 1 && string == "add") {
+        //if result is > 0 then throw new error which catches the error (error has error message"student already exist")
+        //in this program we call callback function with err.message which displays error message
+        throw new Error("student already exist");
+      }
+      if (result.length == 0 && string == "edit") {
+        throw new Error("student not exist");
+      }
+    } else {
+      //if any property is missing while posting student details then it throws this error and msg
+      throw new Error("Student should have name classid phone and email");
     }
-      
+  }
+
   //method to add students and their details
   addStudent(studentDetails, callback) {
     let successful;
@@ -101,15 +103,17 @@ class HYFDataBase {
   editStudentInfo(studentNewInfo, calback) {
     let sucess;
     let error;
+    let i;
     try {
       this.areStudentDetailsValid(studentNewInfo, "edit");
-      let studentToEdit = this.studentsList.filter(student => {
+      this.studentsList.forEach((student, index) => {
+        i = index;
         return student.name == studentNewInfo.name;
       });
-
-      studentToEdit.classId = studentNewInfo.classId;
-      studentToEdit.phone = studentNewInfo.phone;
-      studentToEdit.email = studentNewInfo.email;
+      //console.log(i);
+      this.studentsList[i].classId = studentNewInfo.classId;
+      this.studentsList[i].phone = studentNewInfo.phone;
+      this.studentsList[i].email = studentNewInfo.email;
       calback("suceess", error);
     } catch (err) {
       calback(sucess, err.message);
