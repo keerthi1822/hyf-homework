@@ -1,7 +1,7 @@
 //let http = require("http");no need in express
 const express = require("express");
 const body_parser = require("body-parser");
-const methodOverride = require("method-override");
+//const methodOverride = require("method-override");
 const router = express.Router();
 let StudentBook = require("./HYFStudents");
 
@@ -68,7 +68,7 @@ app.use(
 );
 app.use(body_parser.json()); //check and understand from body parser documentation from internet
 
-app.use(methodOverride("X-HTTP-Method-Override"));
+//app.use(methodOverride("X-HTTP-Method-Override"));
 
 app.get("/", (req, res) => res.send("API for HYF"));
 
@@ -121,20 +121,19 @@ router
     //most important
     //***make content type as aplication/json in both the bodys to accept json files(in postman )***
 
-    if (HYFDataBase.getStudentDetailByName(req.body.name).length !== 0) {
-      //console.log(HYFDataBase.getStudentDetailByName(req.body.name));
-      HYFDataBase.editStudentInfo(req.body);
-      res.send(HYFDataBase.getStudentsList());
-
-      res.status(200);
-    } else {
-      res.status(404);
-      res.send("student not exist");
-    }
-    //if (!req.body) return res.sendStatus(400);
-    //res.send( req.body );
+    HYFDataBase.editStudentInfo(req.body, (sucessback, errorback) => {
+      if (sucessback) {
+        res.send(sucessback);
+        res.status(200);
+      } else if (errorback) {
+        res.send(errorback);
+        res.status(401);
+      } /* else {
+        res.status(404);
+        res.send("student not exist");
+      } */
+    });
   })
-  //res.send("in put");
 
   .delete((req, res) => {
     //most important

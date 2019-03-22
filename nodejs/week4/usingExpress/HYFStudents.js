@@ -4,7 +4,7 @@ class HYFDataBase {
     this.studentsList = HYFStudents;
   }
   //Check for valid student
-  areStudentDetailsValid(newStudent) {
+  areStudentDetailsValid(newStudent, string) {
     // console.log(newStudent);
     if (
       newStudent.hasOwnProperty("name") &&
@@ -13,32 +13,45 @@ class HYFDataBase {
       newStudent.hasOwnProperty("phone")
     ) {
       const result = this.getStudentDetailByName(newStudent.name);
-      //console.log(result);
+      console.log(result);
       //checking for duplicate result.length == 0 meanns no duplicate available here . So we simply 'return'
       //to calling function that means  true and continue in try block
-      if (result.length == 0) {
-        return;
-      } else {
-        //if result is > 0 then throw new error which catches the error (error has error message"student already exist")
-        //in this program we call callback function with err.message which displays error message
-        throw new Error("student already exist");
+      if (
+        (result.length == 0 && string === "add") ||
+        (result.length > 0 && string === "edit")
+      ) {
+        if (
+          newStudent.name !== "" &&
+          newStudent.classId !== "" &&
+          newStudent.email !== "" &&
+          newStudent.phone !== ""
+        ) {
+          console.log(this.studentsList);
+          return;
+        }else{
+          throw new Error(
+            " name classid phone and email values should not be empty"
+          );
+        }
+         else if(result.length == 1 && string == 'add') {
+          //if result is > 0 then throw new error which catches the error (error has error message"student already exist")
+          //in this program we call callback function with err.message which displays error message
+          throw new Error("student already exist");
+        }else if(result.length ==0 && string == 'edit'){
+          throw new Error('student not exist');
+        }else {
+          //if any property is missing while posting student details then it throws this error and msg
+          throw new Error("Student should have name classid phone and email");
+        }
       }
-    } else {
-      //if any property is missing while posting student details then it throws this error and msg
-      throw new Error("Student should have name classid phone and email");
     }
-  }
-
-  /*  elseif(result.length == 1 && result != newStudent){
-        
-} */
-
+      
   //method to add students and their details
   addStudent(studentDetails, callback) {
     let successful;
     let error;
     try {
-      this.areStudentDetailsValid(studentDetails);
+      this.areStudentDetailsValid(studentDetails, "add");
       this.studentsList.push(studentDetails);
       callback("successful", error);
     } catch (err) {
@@ -69,18 +82,38 @@ class HYFDataBase {
     return detailsForSpecificStudent;
   }
 
-  //method to edit student details through name
-  editStudentInfo(studentInfo) {
-    /*  let studentToEdit = this.studentsList.filter((student,index) => {
-      return student.name == studentInfo.name;
-    });
-    studentToEdit = studentInfo; */
-    this.studentsList = this.studentsList.filter(student => {
-      return student.name !== studentInfo.name;
-    });
+  /*   validateStudentvaluesEmpty(newInfo) {
+    if (
+      newInfo.name !== "" &&
+      newInfo.classId !== "" &&
+      newInfo.email !== "" &&
+      newInfo.phone !== ""
+    ) {
+      return;
+    } else {
+      throw new Error(
+        " name classid phone and email values should not be empty"
+      );
+    }
+  } */
 
-    this.studentsList.push(studentInfo);
-    return this.studentsList;
+  //method to edit student details through name
+  editStudentInfo(studentNewInfo, calback) {
+    let sucess;
+    let error;
+    try {
+      this.areStudentDetailsValid(studentNewInfo, "edit");
+      let studentToEdit = this.studentsList.filter(student => {
+        return student.name == studentNewInfo.name;
+      });
+
+      studentToEdit.classId = studentNewInfo.classId;
+      studentToEdit.phone = studentNewInfo.phone;
+      studentToEdit.email = studentNewInfo.email;
+      calback("suceess", error);
+    } catch (err) {
+      calback(sucess, err.message);
+    }
   }
 
   deleteStudentFromHYF(studentName) {
