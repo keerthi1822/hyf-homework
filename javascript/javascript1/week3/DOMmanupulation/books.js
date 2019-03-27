@@ -83,10 +83,10 @@ function addImages() {
     console.log(Object.keys(booksImgs));
     let  parentDiv = document.getElementsByClassName("info");
     for (i = 0; i < booksInfo.length; i++) {
-        let keyarr = Object.keys(booksImgs);
+       /*  let keyarr = Object.keys(booksImgs);
         console.log(keyarr);
         let valArr = Object.values(booksInfo[i]);
-        console.log(valArr);
+        console.log(valArr); */
 
         const bookId = booksInfo[i].id;
             console.log(bookId);
