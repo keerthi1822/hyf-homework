@@ -1,7 +1,23 @@
+/* const fs = require('fs');// changed to jsonfile module 
+//this is fs syntax down here for FS
+let studentsJsonRaw = fs.readFileSync('students.json');//here we r getting stream of string and need to parse the data to json
+let studentsJson =JSON.parse(studentsJsonRaw);//patsing string to json */
+
+/* Why? use jsonfile package instead of FS?
+
+ Writing JSON.stringify() and then fs.writeFile()(can check in addStudent functionality
+ for stringyfy) and JSON.parse() with fs.readFile() enclosed in try/catch blocks became annoying. */
+
+//install jsonfile package and do following code (from jsonfile package documentation) instead of fs
+const jsonfile = require("jsonfile");
+const file = "students.json";
+
+let studentsJson = jsonfile.readFileSync(file); //also try with readFile(asynchrnous)
+
 //creating class for HYFDatabase
 class HYFDataBase {
-  constructor(HYFStudents) {
-    this.studentsList = HYFStudents;
+  constructor() {
+    this.studentsList = studentsJson;
   }
   //Check for valid student
   areStudentDetailsValid(newStudent, string) {
@@ -55,6 +71,23 @@ class HYFDataBase {
     try {
       this.areStudentDetailsValid(studentDetails, "add");
       this.studentsList.push(studentDetails);
+      //const dats = JSON.stringify//this line is for FS module
+      //save the file permanently(with out this code the object we added wil temperarly add but not save in json )
+      // coment above is for file system (FS module builtin in npm) this is not recomended becase its annoying
+      // to always to parse while readin the file (at the top) and stringyfying here while writing(write file code missing here search from google Filesystem syntax)
+
+      //need to stringify the parsed data
+      /*  let data = JSON.stringify(this._studentList,null,2);
+      //using file system builtin module
+      fs.writeFile('students.json', data ,(err)=>{//saving file in to json file
+        if (err) console.error(err);
+      }); */
+
+      //so install "jsonfile" module we use here
+      //writeFile (command for saving data to file)
+      jsonfile.writeFile(file, this.studentsList, function(err) {
+        if (err) console.error(err);
+      });
       callback("successful", error);
     } catch (err) {
       callback(successful, err.message);
@@ -63,9 +96,7 @@ class HYFDataBase {
 
   //method to get students list
   getStudentsList() {
-    return this.studentsList.map(student => {
-      return { Name: student.name, email: student.email };
-    });
+    return this.studentsList;
   }
 
   //method to get student using classId
@@ -81,6 +112,7 @@ class HYFDataBase {
     let detailsForSpecificStudent = this.studentsList.filter(student => {
       return student.name == name;
     });
+    //console.log('found name');
     return detailsForSpecificStudent;
   }
 
@@ -120,11 +152,31 @@ class HYFDataBase {
     }
   }
 
-  deleteStudentFromHYF(studentName) {
-    this.studentsList = this.studentsList.filter(student => {
-      return studentName !== student.name;
-    });
-    return this.studentsList;
+  isStudentExist(studentToDelete){
+  
+    if(studentToDelete.hasOwnProperty(name)){
+      return;
+    }
+    else {
+      throw new Error(`not valid info`);
+    }
+  }
+
+  deleteStudentFromHYF(studentInfo, callback) {
+    let sucess;
+    let error;
+    console.log(studentInfo);
+    try {
+      this.isStudentExist(studentInfo);
+      let findIndexOfStudentToDelete = this.studentsList.findIndex(
+        student => student.name == studentInfo.name
+      );
+      console.log(findIndexOfStudentToDelete);
+      this.studentsList.splice(findIndexOfStudentToDelete, 1);
+      callback("sucess", error);
+    } catch (err) {
+      callback(sucess, err.message);
+    }
   }
 }
 

@@ -14,8 +14,8 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "rules": {
+    /* "rules": {
         "semi": "error",
         "no-var": 2//value 0 means 'ignore' value 1 'warning'
-    }
+    } */
 };
