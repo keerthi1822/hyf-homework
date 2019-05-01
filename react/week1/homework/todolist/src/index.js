@@ -16,13 +16,18 @@ class List extends React.Component {
 class App extends React.Component {
     constructor(props){
         super(props);
+        const toAddList = ["newitem1","newitem2","newitem3"];
+        let i=0;
         this.state = {
-          items : ["item1","item2"]
+          items : ["item1","item2","item3"]
         }
-        setTimeout(() => {
+        const addItemInterval = setInterval(() => {
             console.log("done");
-            const newItems = this.state.items.concat("new list item");
+            const newItems = this.state.items.concat(toAddList[i]);
             this.setState({items:newItems});
+            i++;
+            if(i===toAddList.length)
+            clearInterval(addItemInterval);
         }, 4000);
     }
     render() {
