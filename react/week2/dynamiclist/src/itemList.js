@@ -3,14 +3,14 @@ import React from "react";
 import "./itemList.css";
 
 class ItemList extends React.Component {
-  /* state = {
+  state = {
     selectedItem: ""
   };
   deleteHandler = e => {
+    const selectedItemToDelete = e.currentTarget.tagName;
     //const selectedItem: e.target.parentNode;
-    console.log(e.target.parentNode);
-    //this.props.deleteItem(selectedItem);
-  }; */
+    this.props.deleteItem(selectedItemToDelete);
+  };
   render() {
     const { items } = this.props;
     return (
