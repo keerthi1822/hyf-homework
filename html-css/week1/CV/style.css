@@ -1,0 +1,165 @@
+body {
+  border: 2px groove;
+  background-color: lightgrey;
+  margin: auto;
+  font-family: "Cuprum", sans-serif;
+  width: 75%;
+  padding: auto;
+}
+
+h1 {
+  font-size: 1.8em;
+  font-family: "Teko", sans-serif;
+  color: rgb(80, 172, 106);
+  justify-content: center;
+  font-style: italic;
+}
+
+h2 {
+  color: rgb(49, 138, 74);
+  border-bottom: 1px solid rgb(49, 138, 74);
+  /* padding-top: 75px; */
+}
+
+nav ul li p {
+  font-style: italic;
+}
+
+h1,
+p {
+  /* font-family: 'Teko', sans-serif; */
+  font-family: "Cuprum", sans-serif;
+  width: 75%;
+  padding: auto;
+  margin: auto;
+}
+
+ul li {
+  list-style: none;
+}
+
+.profile li,
+.details li {
+  list-style-type: square;
+}
+
+header {
+  height: 70px;
+  background-color: #333;
+  box-sizing: border-box;
+  width: 100%;
+  /*  position: fixed;
+  z-index: 22; */
+}
+
+nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+nav section {
+  flex-grow: 1;
+}
+
+nav ul {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 1.3em;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.flexstart {
+  justify-content: flex-start;
+  align-self: center;
+  padding: 1%;
+  color: whitesmoke;
+  flex-direction: column;
+}
+
+.flexend {
+  justify-content: flex-end;
+  flex: 1;
+  justify-content: space-around;
+  align-self: center;
+  /* background-color: #333; */
+  /* 	line-height:2.9em;  */
+}
+
+li a {
+  display: block;
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: #4caf50;
+  font-size: 1.1em;
+}
+
+.container {
+  display: flex;
+  position: relative;
+  background-color: whitesmoke;
+  /* margin-top: 70px; */
+}
+
+#left {
+  order: 2;
+}
+
+.info a {
+  color: #4caf50;
+}
+
+#right {
+  max-width: 30%;
+  background-color: rgb(187, 209, 177);
+  /* text-align: center; */
+}
+
+#right ul li {
+  display: flex;
+  flex-direction: column;
+  /* 	justify-content: center; */
+}
+
+.img {
+  text-align: center;
+  /* 	padding-top: 75px; */
+}
+
+.img img {
+  width: 65%;
+  /* height:30%; */
+  border-radius: 50%;
+  padding-top: 3%;
+}
+
+progress {
+  justify-content: center;
+}
+
+progress[value] {
+  /* Reset the default appearance */
+  /* -webkit-appearance: none;
+	 appearance: none; */
+  max-width: 75%;
+  height: 3px;
+  background-color: rgb(5, 83, 27);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+.top {
+  color: black;
+  float: right;
+  position: fixed;
+  bottom: 20px;
+  right: 20%;
+  z-index: 10;
+}
+
+/*-----------media queries-------------*/
