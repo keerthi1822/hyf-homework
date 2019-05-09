@@ -17,11 +17,11 @@ class App extends React.Component {
     /*  console.log(newItems); */
     this.setState({ items: newItems });
   };
-  deleteItem = itemToDelete => {
+  /*  deleteItem = itemToDelete => {
     const deleteItemIndex = this.items.findIndex(itemToDelete);
     this.items.splice(deleteItemIndex, 1);
     this.setState({ items: this.items });
-  };
+  }; */
 
   render() {
     const { items } = this.state;
