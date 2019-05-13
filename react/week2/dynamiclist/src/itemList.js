@@ -3,21 +3,18 @@ import React from "react";
 import "./itemList.css";
 
 class ItemList extends React.Component {
-  deleteHandler = e => {
+  /*  deleteHandler = e => {
     //console.log(e.currentTarget.tagName);
-    const selectedItemToDelete = e.target;
-    selectedItemToDelete.parentNode.parentNode.removeChild(
-      selectedItemToDelete.parentNode
-    );
-  };
+    this.props.deleteItem(e);
+  }; */
   render() {
-    const { items } = this.props;
+    const { items, deleteItem } = this.props;
     return (
       <ul className="eachItemContainer">
         {items.map(item => (
           <li key={item.id}>
             {item.text}
-            <button onClick={this.deleteHandler}>DeleteItem</button>
+            <button onClick={() => deleteItem(item.id)}>Delete</button>
           </li>
         ))}
       </ul>
