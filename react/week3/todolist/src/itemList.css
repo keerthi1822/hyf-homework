@@ -1,0 +1,11 @@
+.eachItemContainer {
+  padding: 20px;
+  margin: 10px;
+  background-color: blueviolet;
+}
+ul li {
+  list-style-type: none;
+}
+itemChecked {
+  text-decoration: line-through;
+}
