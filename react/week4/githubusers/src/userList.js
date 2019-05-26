@@ -8,7 +8,14 @@ class Userlist extends React.Component {
         {searchResult.length > 0 ? (
           <ul>
             {searchResult.map(user => (
-              <li key={user.id}>{user.login}</li>
+              <li key={user.id}>
+                <ul>
+                  <li>{user.login}</li>
+                  <li>
+                    <a href={user.html_url}>{user.html_url}</a>
+                  </li>
+                </ul>
+              </li>
             ))}
           </ul>
         ) : (

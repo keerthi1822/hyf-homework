@@ -4,8 +4,11 @@ import "./index.css";
 import Inputtext from "./inputText";
 import Userlist from "./userList";
 
-function getGithubUsers() {
-  return fetch("https://api.github.com/users").then(res => res.json());
+function getGithubUsers(user) {
+  console.log(user);
+  return fetch(`https://api.github.com/search/users?q=${user}`).then(res =>
+    res.json()
+  );
 }
 
 class App extends React.Component {
@@ -16,13 +19,10 @@ class App extends React.Component {
   filterBySearch = (searchValue, inSearchingMode) => {
     /* const { searchResult } = this.state; */
     this.setState({ isSearching: true });
-    getGithubUsers().then(users => {
-      console.log(users);
-      const searchResultUsers = users.filter(user =>
-        user.login.includes(searchValue)
-      );
-      console.log(searchResultUsers);
-      this.setState({ searchResult: searchResultUsers, isSearching: false });
+    console.log(searchValue);
+    getGithubUsers(searchValue).then(users => {
+      console.log(users.items);
+      this.setState({ searchResult: users.items, isSearching: false });
     });
   };
   componentDidMount() {
